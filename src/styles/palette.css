@@ -1,0 +1,12 @@
+/* src/styles/palette.css */
+:root {
+  --color-primary-accent: #3498db;
+  --color-heading-text: #2c3e50;
+  --color-body-text: #34495e;
+  --color-subtle-text: #7f8c8d;
+  --color-background-card: #f8f9fa;
+  --color-background-page: #ffffff;
+  --color-border-light: #e0e0e0;
+  --color-border-divider: #ecf0f1;
+  --color-text-on-accent: #ffffff;
+}

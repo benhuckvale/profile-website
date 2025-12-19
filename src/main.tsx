@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import './styles/cyberpunk-theme.css' // Import the cyberpunk theme
 import './index.css'
 import App from './App.tsx'
 

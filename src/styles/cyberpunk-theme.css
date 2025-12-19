@@ -1,0 +1,377 @@
+@import './circuit-palette.css';
+
+/* ===========================
+   Global Background & Body
+   =========================== */
+
+body {
+  background-color: var(--color-background-page);
+  background-image: url('/assets/circuit-ui/images/bg-circuit-deep.png');
+  background-size: 1920px 1080px;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  color: var(--color-body-text);
+  min-height: 100vh;
+}
+
+/* ===========================
+   Glassmorphism Cards
+   =========================== */
+
+.glass-card {
+  background: rgba(6, 13, 27, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(27, 53, 88, 0.5);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover {
+  cursor: pointer;
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(47, 155, 255, 0.6);
+  box-shadow:
+    0 12px 48px 0 rgba(47, 155, 255, 0.25),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px);
+}
+
+/* ===========================
+   Neon Glow Effects
+   =========================== */
+
+.neon-glow-blue {
+  color: var(--color-primary-accent);
+  text-shadow:
+    0 0 10px rgba(47, 155, 255, 0.8),
+    0 0 20px rgba(47, 155, 255, 0.5),
+    0 0 30px rgba(47, 155, 255, 0.3);
+}
+
+.neon-glow-cyan {
+  color: var(--color-secondary-accent);
+  text-shadow:
+    0 0 10px rgba(90, 214, 255, 0.8),
+    0 0 20px rgba(90, 214, 255, 0.5);
+}
+
+.neon-text {
+  color: var(--color-heading-text);
+  text-shadow: 0 0 5px rgba(230, 242, 255, 0.5);
+}
+
+/* ===========================
+   Expand/Collapse Animations
+   =========================== */
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 5000px;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    max-height: 5000px;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.expanding {
+  animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  overflow: hidden;
+}
+
+.collapsing {
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  overflow: hidden;
+}
+
+/* ===========================
+   Circuit Decorations
+   =========================== */
+
+.circuit-corners {
+  position: relative;
+}
+
+.circuit-corners::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: url('/assets/circuit-ui/images/section-frame-corners.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.circuit-border-top {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-primary-accent) 50%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(47, 155, 255, 0.5);
+  margin: 2rem 0;
+}
+
+/* ===========================
+   Navigation Styles
+   =========================== */
+
+.nav-link {
+  color: var(--color-body-text);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--color-primary-accent);
+  background: rgba(47, 155, 255, 0.1);
+}
+
+.nav-link-active {
+  color: var(--color-primary-accent);
+  background: rgba(47, 155, 255, 0.15);
+  border-bottom: 2px solid var(--color-primary-accent);
+  box-shadow: 0 0 15px rgba(47, 155, 255, 0.3);
+}
+
+/* ===========================
+   Buttons & Links
+   =========================== */
+
+.profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(47, 155, 255, 0.1);
+  border: 1px solid var(--color-primary-accent);
+  border-radius: 8px;
+  color: var(--color-primary-accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.profile-link:hover {
+  background: rgba(47, 155, 255, 0.2);
+  box-shadow: 0 0 20px rgba(47, 155, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   Section Headings
+   =========================== */
+
+.section-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-heading-text);
+  margin: 3rem 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.section-heading::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-accent) 0%,
+    transparent 100%
+  );
+  box-shadow: 0 0 8px rgba(47, 155, 255, 0.4);
+}
+
+.heading-accent {
+  font-size: 1.75rem;
+  filter: drop-shadow(0 0 8px rgba(47, 155, 255, 0.6));
+}
+
+/* ===========================
+   Skill Tags
+   =========================== */
+
+.skill-tag-cyber {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: rgba(47, 155, 255, 0.1);
+  border: 1px solid rgba(47, 155, 255, 0.3);
+  border-radius: 6px;
+  color: var(--color-secondary-accent);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.skill-tag-cyber:hover {
+  background: rgba(47, 155, 255, 0.2);
+  border-color: var(--color-primary-accent);
+  box-shadow: 0 0 10px rgba(47, 155, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* ===========================
+   Chevron Icon (for expand/collapse)
+   =========================== */
+
+.chevron {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-right: 2px solid var(--color-primary-accent);
+  border-bottom: 2px solid var(--color-primary-accent);
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+  margin-left: 0.5rem;
+}
+
+.chevron-up {
+  transform: rotate(-135deg);
+}
+
+/* ===========================
+   Position Cards (nested in work experience)
+   =========================== */
+
+.position-card {
+  background: rgba(27, 53, 88, 0.2);
+  border-left: 3px solid var(--color-primary-accent);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin: 1rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.position-card h4 {
+  color: var(--color-secondary-accent);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.position-card .date-range {
+  color: var(--color-subtle-text);
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* ===========================
+   Bullet Lists
+   =========================== */
+
+.cyber-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.cyber-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-body-text);
+}
+
+.cyber-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary-accent);
+  font-weight: bold;
+}
+
+/* ===========================
+   Tech Tags
+   =========================== */
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tech-tag {
+  padding: 0.25rem 0.75rem;
+  background: rgba(90, 214, 255, 0.1);
+  border: 1px solid rgba(90, 214, 255, 0.3);
+  border-radius: 4px;
+  color: var(--color-secondary-accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* ===========================
+   Utilities
+   =========================== */
+
+.text-muted {
+  color: var(--color-subtle-text);
+}
+
+.text-accent {
+  color: var(--color-primary-accent);
+}
+
+.border-accent {
+  border-color: var(--color-primary-accent);
+}
+
+/* ===========================
+   Responsive Utilities
+   =========================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===========================
+   Focus Visible (Accessibility)
+   =========================== */
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
