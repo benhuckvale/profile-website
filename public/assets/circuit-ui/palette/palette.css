@@ -1,0 +1,13 @@
+:root {
+  --color-background-page: #03070f;
+  --color-background-card: #060d1b;
+  --color-primary-accent: #2f9bff;
+  --color-secondary-accent: #5ad6ff;
+  --color-heading-text: #e6f2ff;
+  --color-body-text: #b8cce6;
+  --color-subtle-text: #7f93ad;
+  --color-border-light: #1b3558;
+  --color-border-divider: #12243d;
+  --color-text-on-accent: #03070f;
+}
+
