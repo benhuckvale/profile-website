@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { FaUser, FaFileAlt } from 'react-icons/fa';
 import Profile from './Profile';
 import Blog from './Blog';
 
@@ -13,7 +14,8 @@ function Navigation() {
             to="/"
             className={`nav-link ${location.pathname === '/' ? 'nav-link-active' : ''}`}
           >
-            👤 Profile
+            <FaUser style={{ display: 'inline', marginRight: '0.5rem' }} />
+            Profile
           </Link>
         </li>
         <li>
@@ -21,7 +23,8 @@ function Navigation() {
             to="/blog"
             className={`nav-link ${location.pathname === '/blog' ? 'nav-link-active' : ''}`}
           >
-            📝 Blog
+            <FaFileAlt style={{ display: 'inline', marginRight: '0.5rem' }} />
+            Blog
           </Link>
         </li>
       </ul>

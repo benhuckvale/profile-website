@@ -1,4 +1,5 @@
 import React from 'react';
+import { renderTextWithLinks } from '../utils/markdownLink';
 
 interface ProjectCardProps {
   project: any; // Can refine interface later
@@ -15,10 +16,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           className="neon-glow-cyan"
           style={{ textDecoration: 'none' }}
         >
-          {project.name} 🔗
+          {project.name}
         </a>
       </h3>
-      <p>{project.description}</p>
+      <p>{renderTextWithLinks(project.description)}</p>
       {project.technologies && project.technologies.length > 0 && (
         <div className="tech-tags">
           {project.technologies.map((tech: string, i: number) => (

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { renderTextWithLinks } from '../utils/markdownLink';
 
 interface WorkExperienceCardProps {
   job: any;
@@ -50,15 +51,15 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
                   style={{ textDecoration: 'none', color: 'inherit' }}
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {employerName} 🔗
+                  {employerName}
                 </a>
               ) : (
                 employerName
               )}
             </h3>
             <div className="date-location" style={{ marginBottom: 0 }}>
-              <span>📅 {earliestStart} - {latestEnd}</span>
-              {location && <span>📍 {location}</span>}
+              <span>{earliestStart} - {latestEnd}</span>
+              {location && <span>{location}</span>}
               <span className="text-accent">
                 {positions.length} position{positions.length > 1 ? 's' : ''}
               </span>
@@ -77,11 +78,13 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
             <div key={index} className="position-card">
               <h4>{position.title}</h4>
               <p className="date-range">
-                📅 {position.start} - {position.end}
+                {position.start} - {position.end}
               </p>
 
               {position.detail?.formal && (
-                <p style={{ marginTop: '1rem' }}>{position.detail.formal}</p>
+                <p style={{ marginTop: '1rem' }}>
+                  {renderTextWithLinks(position.detail.formal)}
+                </p>
               )}
 
               {position.detail?.technical_examples && position.detail.technical_examples.length > 0 && (
@@ -95,7 +98,7 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
                         {Object.values(section).map((list: any, i: number) => (
                           <React.Fragment key={i}>
                             {list.map((item: string, j: number) => (
-                              <li key={j}>{item}</li>
+                              <li key={j}>{renderTextWithLinks(item)}</li>
                             ))}
                           </React.Fragment>
                         ))}
@@ -116,7 +119,7 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
                         {Object.values(section).map((list: any, i: number) => (
                           <React.Fragment key={i}>
                             {list.map((item: string, j: number) => (
-                              <li key={j}>{item}</li>
+                              <li key={j}>{renderTextWithLinks(item)}</li>
                             ))}
                           </React.Fragment>
                         ))}

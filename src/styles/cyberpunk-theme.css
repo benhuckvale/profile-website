@@ -7,9 +7,10 @@
 body {
   background-color: var(--color-background-page);
   background-image: url('/assets/circuit-ui/images/bg-circuit-deep.png');
-  background-size: 1920px 1080px;
-  background-repeat: repeat;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
   color: var(--color-body-text);
   min-height: 100vh;
 }
