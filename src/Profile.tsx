@@ -11,6 +11,29 @@ const Profile: React.FC = () => {
   const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects } = profileData;
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
+  // Group work entries by employer name for display
+  const groupedWork = React.useMemo(() => {
+    const grouped = new Map<string, any>();
+
+    work.forEach((job: any) => {
+      const employerName = job.employer?.name || job.company || 'Unknown';
+
+      if (grouped.has(employerName)) {
+        // Merge positions into existing employer entry
+        const existing = grouped.get(employerName);
+        existing.positions = [...existing.positions, ...(job.positions || [])];
+      } else {
+        // Create new employer entry
+        grouped.set(employerName, {
+          ...job,
+          positions: job.positions || []
+        });
+      }
+    });
+
+    return Array.from(grouped.values());
+  }, [work]);
+
   // Extract skill usage from work experience
   const getSkillUsage = (skill: string) => {
     // Get search terms: skill name + aliases
@@ -278,7 +301,7 @@ const Profile: React.FC = () => {
           Work Experience
         </h2>
         <div className="section-content">
-          {work.map((job, index) => (
+          {groupedWork.map((job, index) => (
             <WorkExperienceCard key={index} job={job} />
           ))}
         </div>
