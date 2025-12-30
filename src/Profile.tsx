@@ -8,11 +8,16 @@ import ProjectCard from './components/ProjectCard';
 import './Profile.css';
 
 const Profile: React.FC = () => {
-  const { personal, professional_qualifications, statement, work, education, skills, projects } = profileData;
+  const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects } = profileData;
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
   // Extract skill usage from work experience
   const getSkillUsage = (skill: string) => {
+    // Get search terms: skill name + aliases
+    const searchTerms = [skill.toLowerCase()];
+    if (skill_aliases && skill_aliases[skill]) {
+      searchTerms.push(...skill_aliases[skill].map((alias: string) => alias.toLowerCase()));
+    }
     const usage: any[] = [];
 
     if (!work || !Array.isArray(work)) {
@@ -29,6 +34,18 @@ const Profile: React.FC = () => {
 
           const examples: string[] = [];
 
+          // Helper to check if text matches any search term (word boundaries)
+          const matchesAnyTerm = (text: string) => {
+            const lowerText = text.toLowerCase();
+            return searchTerms.some(term => {
+              // Use word boundary regex for whole-word matching
+              // Escape special regex characters in the term
+              const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
+              return regex.test(lowerText);
+            });
+          };
+
           // Check technical examples
           if (position.detail?.technical_examples && Array.isArray(position.detail.technical_examples)) {
             position.detail.technical_examples.forEach((exampleGroup: any) => {
@@ -36,7 +53,7 @@ const Profile: React.FC = () => {
                 Object.values(exampleGroup).forEach((exampleList: any) => {
                   if (Array.isArray(exampleList)) {
                     exampleList.forEach((example: string) => {
-                      if (typeof example === 'string' && example.toLowerCase().includes(skill.toLowerCase())) {
+                      if (typeof example === 'string' && matchesAnyTerm(example)) {
                         examples.push(example);
                       }
                     });
@@ -53,7 +70,7 @@ const Profile: React.FC = () => {
                 Object.values(exampleGroup).forEach((exampleList: any) => {
                   if (Array.isArray(exampleList)) {
                     exampleList.forEach((example: string) => {
-                      if (typeof example === 'string' && example.toLowerCase().includes(skill.toLowerCase())) {
+                      if (typeof example === 'string' && matchesAnyTerm(example)) {
                         examples.push(example);
                       }
                     });
@@ -65,7 +82,7 @@ const Profile: React.FC = () => {
 
           // Check formal description
           if (position.detail?.formal && typeof position.detail.formal === 'string') {
-            if (position.detail.formal.toLowerCase().includes(skill.toLowerCase())) {
+            if (matchesAnyTerm(position.detail.formal)) {
               examples.push(position.detail.formal);
             }
           }
