@@ -2,12 +2,13 @@
 
 .profile-container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
+  margin-left: 2rem;
   padding: 2rem 1.5rem;
 }
 
 .profile-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   padding: 3rem 2rem;
   background: rgba(6, 13, 27, 0.6);
@@ -48,7 +49,7 @@
 
 .profile-links {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 2rem;
@@ -172,6 +173,148 @@
   transform: scale(1.05);
 }
 
+/* Skill tag selected state */
+.skill-tag-selected {
+  background: rgba(47, 155, 255, 0.3) !important;
+  border-color: var(--color-primary-accent) !important;
+  box-shadow: 0 0 20px rgba(47, 155, 255, 0.5) !important;
+  transform: scale(1.05);
+}
+
+/* Skill Modal */
+.skill-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 2rem;
+  backdrop-filter: blur(4px);
+}
+
+.skill-modal {
+  background: rgba(6, 13, 27, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid rgba(47, 155, 255, 0.4);
+  border-radius: 16px;
+  max-width: 800px;
+  max-height: 80vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(47, 155, 255, 0.3),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+}
+
+.skill-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  border-bottom: 1px solid rgba(47, 155, 255, 0.3);
+  background: rgba(47, 155, 255, 0.05);
+}
+
+.skill-modal-header h2 {
+  margin: 0;
+  color: var(--color-heading-text);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  text-shadow:
+    0 0 20px rgba(47, 155, 255, 0.8),
+    0 0 40px rgba(47, 155, 255, 0.5);
+}
+
+.skill-modal-close {
+  background: none;
+  border: none;
+  color: var(--color-secondary-accent);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.skill-modal-close:hover {
+  color: var(--color-primary-accent);
+  background: rgba(47, 155, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.skill-modal-content {
+  padding: 2rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.skill-usage-item {
+  background: rgba(6, 13, 27, 0.5);
+  border: 1px solid rgba(27, 53, 88, 0.5);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.skill-usage-item:hover {
+  border-color: rgba(47, 155, 255, 0.4);
+  box-shadow: 0 4px 16px rgba(47, 155, 255, 0.15);
+}
+
+.skill-usage-item h3 {
+  color: var(--color-heading-text);
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.skill-usage-item h4 {
+  color: var(--color-secondary-accent);
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+.skill-usage-dates {
+  color: var(--color-subtle-text);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.skill-usage-item ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0 0 0;
+}
+
+.skill-usage-item ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-body-text);
+  line-height: 1.6;
+}
+
+.skill-usage-item ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--color-primary-accent);
+  font-weight: bold;
+}
+
 /* Responsive breakpoints */
 @media (max-width: 768px) {
   .profile-container {
@@ -189,6 +332,27 @@
 
   .skills-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .skill-modal {
+    max-height: 90vh;
+    margin: 1rem;
+  }
+
+  .skill-modal-header {
+    padding: 1.5rem;
+  }
+
+  .skill-modal-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .skill-modal-content {
+    padding: 1rem;
+  }
+
+  .skill-usage-item {
+    padding: 1rem;
   }
 }
 
