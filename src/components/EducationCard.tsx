@@ -3,9 +3,10 @@ import { renderTextWithLinks } from '../utils/markdownLink';
 
 interface EducationCardProps {
   edu: any; // Can refine interface later
+  unicodeReplacements?: Record<string, string>;
 }
 
-const EducationCard: React.FC<EducationCardProps> = ({ edu }) => {
+const EducationCard: React.FC<EducationCardProps> = ({ edu, unicodeReplacements }) => {
   return (
     <div className="glass-card glass-card-hover">
       <h3>
@@ -16,7 +17,7 @@ const EducationCard: React.FC<EducationCardProps> = ({ edu }) => {
         <span>{edu.start} - {edu.end}</span>
         {edu.location && <span>{edu.location}</span>}
       </div>
-      {edu.detail?.formal && <p>{renderTextWithLinks(edu.detail.formal)}</p>}
+      {edu.detail?.formal && <p>{renderTextWithLinks(edu.detail.formal, unicodeReplacements)}</p>}
     </div>
   );
 };

@@ -82,9 +82,15 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
               </p>
 
               {position.detail?.formal && (
-                <p style={{ marginTop: '1rem' }}>
-                  {renderTextWithLinks(position.detail.formal)}
-                </p>
+                <div style={{ marginTop: '1rem' }}>
+                  {Array.isArray(position.detail.formal) ? (
+                    position.detail.formal.map((text: string, idx: number) => (
+                      <p key={idx}>{renderTextWithLinks(text)}</p>
+                    ))
+                  ) : (
+                    <p>{renderTextWithLinks(position.detail.formal)}</p>
+                  )}
+                </div>
               )}
 
               {position.detail?.technical_examples && position.detail.technical_examples.length > 0 && (

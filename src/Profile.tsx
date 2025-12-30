@@ -8,7 +8,7 @@ import ProjectCard from './components/ProjectCard';
 import './Profile.css';
 
 const Profile: React.FC = () => {
-  const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects } = profileData;
+  const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
   // Group work entries by employer name for display
@@ -313,9 +313,11 @@ const Profile: React.FC = () => {
           Education
         </h2>
         <div className="section-content">
-          {education.map((edu, index) => (
-            <EducationCard key={index} edu={edu} />
-          ))}
+          {education
+            .filter((edu: any) => !edu.hide)
+            .map((edu, index) => (
+              <EducationCard key={index} edu={edu} unicodeReplacements={unicode_replacements} />
+            ))}
         </div>
       </section>
 
