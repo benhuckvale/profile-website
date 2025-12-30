@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaLinkedin, FaGithub, FaEnvelope, FaBriefcase, FaGraduationCap, FaTools, FaRocket, FaTimes } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaEnvelope, FaBriefcase, FaGraduationCap, FaTools, FaRocket, FaTimes, FaInfoCircle } from 'react-icons/fa';
 import { SiHuggingface } from 'react-icons/si';
 import profileData from './profile.json';
 import WorkExperienceCard from './components/WorkExperienceCard';
@@ -10,23 +10,32 @@ import './Profile.css';
 const Profile: React.FC = () => {
   const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+  const [showSkillTooltip, setShowSkillTooltip] = useState(false);
 
   // Group work entries by employer name for display
   const groupedWork = React.useMemo(() => {
     const grouped = new Map<string, any>();
 
     work.forEach((job: any) => {
-      const employerName = job.employer?.name || job.company || 'Unknown';
+      // Handle both string and object employer formats
+      const employerName =
+        typeof job.employer === 'string' ? job.employer :
+        job.employer?.name ||
+        job.company ||
+        'Unknown';
 
       if (grouped.has(employerName)) {
-        // Merge positions into existing employer entry
+        // Merge positions into existing employer entry (create new object)
         const existing = grouped.get(employerName);
-        existing.positions = [...existing.positions, ...(job.positions || [])];
+        grouped.set(employerName, {
+          ...existing,
+          positions: [...existing.positions, ...(job.positions || [])]
+        });
       } else {
         // Create new employer entry
         grouped.set(employerName, {
           ...job,
-          positions: job.positions || []
+          positions: [...(job.positions || [])]
         });
       }
     });
@@ -120,6 +129,48 @@ const Profile: React.FC = () => {
           }
         });
       });
+
+      // Also check education entries
+      if (education && Array.isArray(education)) {
+        education.forEach((edu: any) => {
+          if (!edu) return;
+
+          const examples: string[] = [];
+
+          // Helper to check if text matches any search term (word boundaries)
+          const matchesAnyTerm = (text: string) => {
+            const lowerText = text.toLowerCase();
+            return searchTerms.some(term => {
+              const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
+              return regex.test(lowerText);
+            });
+          };
+
+          // Check formal description
+          if (edu.detail?.formal && typeof edu.detail.formal === 'string') {
+            if (matchesAnyTerm(edu.detail.formal)) {
+              examples.push(edu.detail.formal);
+            }
+          }
+
+          // Check tech field
+          if (edu.detail?.tech && typeof edu.detail.tech === 'string') {
+            if (matchesAnyTerm(edu.detail.tech)) {
+              examples.push(`Technologies: ${edu.detail.tech}`);
+            }
+          }
+
+          if (examples.length > 0) {
+            usage.push({
+              company: edu.institution || 'Education',
+              position: edu.qualification || 'Academic Study',
+              dates: `${edu.start || ''} - ${edu.end || ''}`,
+              examples: examples
+            });
+          }
+        });
+      }
     } catch (error) {
       console.error('Error extracting skill usage:', error);
     }
@@ -265,6 +316,54 @@ const Profile: React.FC = () => {
           Skills
           <span style={{ fontSize: '0.8rem', fontWeight: 'normal', marginLeft: '1rem', color: 'var(--color-subtle-text)' }}>
             (click to see usage examples)
+            <span style={{ position: 'relative', display: 'inline-block', marginLeft: '0.5rem' }}>
+              <FaInfoCircle
+                size={14}
+                style={{ cursor: 'pointer', color: 'var(--color-secondary-accent)' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowSkillTooltip(!showSkillTooltip);
+                }}
+              />
+              {showSkillTooltip && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '1.5rem',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    backgroundColor: 'rgba(6, 13, 27, 0.95)',
+                    border: '1px solid var(--color-primary-accent)',
+                    borderRadius: '8px',
+                    padding: '0.75rem',
+                    fontSize: '0.85rem',
+                    color: 'var(--color-body-text)',
+                    width: '280px',
+                    zIndex: 1000,
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
+                    lineHeight: '1.4'
+                  }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <strong>Note:</strong> I am still working on this skills cross-reference feature, but I hope you can find it useful in highlighting selected examples from my work experience. Not all relevant usage may be shown.
+                  <div style={{ marginTop: '0.5rem', textAlign: 'right' }}>
+                    <button
+                      onClick={() => setShowSkillTooltip(false)}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: 'var(--color-secondary-accent)',
+                        cursor: 'pointer',
+                        fontSize: '0.75rem',
+                        textDecoration: 'underline'
+                      }}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              )}
+            </span>
           </span>
         </h2>
         <div className="skills-grid">
