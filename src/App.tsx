@@ -8,7 +8,7 @@ function Navigation() {
 
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-background-page/80 border-b border-primary-accent/30">
-      <ul className="flex justify-center gap-8 py-4">
+      <ul className="flex justify-start gap-8 py-4 ml-8">
         <li>
           <Link
             to="/"
