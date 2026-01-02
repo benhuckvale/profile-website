@@ -54,7 +54,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          cname: your-custom-domain.com  # Optional: Remove if not using custom domain
 
       - name: Summary
         run: |
