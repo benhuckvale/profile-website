@@ -1,0 +1,64 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Required for GitHub Pages deployment
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch latest profile data
+        run: |
+          echo "Fetching latest release from my-career-data..."
+
+          # Create public directory if it doesn't exist
+          mkdir -p public
+
+          # Download latest release artifacts
+          gh release download \
+            --repo benhuckvale/my-career-data \
+            --pattern 'profile.json' \
+            --pattern 'portrait.jpeg' \
+            --dir public/ \
+            --clobber
+
+          echo "✓ Downloaded profile.json and portrait.jpeg"
+          ls -lh public/
+        env:
+          GH_TOKEN: ${{ secrets.PAT_FOR_PRIVATE_REPO }}
+
+      - name: Build website
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          cname: your-custom-domain.com  # Optional: Remove if not using custom domain
+
+      - name: Summary
+        run: |
+          echo "✅ Website built and deployed successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Deployed from**: ${{ github.ref_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Build time**: $(date)" >> $GITHUB_STEP_SUMMARY
