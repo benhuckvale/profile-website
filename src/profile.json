@@ -1,0 +1,180 @@
+{
+  "personal": {
+    "name": {
+      "first": "Jane",
+      "last": "Doe",
+      "title": "Dr"
+    },
+    "email": "jane.demo@example.com",
+    "phone": {
+      "mobile": "+44 7700 900123"
+    },
+    "vague_address": {
+      "text": "Demoshire, United Kingdom"
+    },
+    "linkedin": {
+      "text": "linkedin.com/in/jane-demo-doe",
+      "url": "https://www.linkedin.com/in/jane-demo-doe"
+    },
+    "github": {
+      "text": "github.com/jane-demo-doe",
+      "url": "https://github.com/jane-demo-doe"
+    }
+  },
+  "statement": {
+    "formal": "[Obviously Not Real] Senior Software Engineer with 8+ years of experience building scalable AI-powered systems. Specialized in RAG architectures, vector databases, and production ML systems. Passionate about bridging the gap between cutting-edge AI research and practical, user-focused applications."
+  },
+  "work": [
+    {
+      "employer": {
+        "name": "Tech Innovations Ltd",
+        "link": "https://techinnovations.example.co.uk"
+      },
+      "location": "Cambridge, United Kingdom",
+      "positions": [
+        {
+          "title": "Senior Software Engineer",
+          "start": "Jan 2020",
+          "end": "Present",
+          "detail": {
+            "formal": "Lead engineer for AI-powered products, building RAG systems and LLM integrations. Architected microservices handling 1M+ requests/day. Mentored team of 5 engineers.",
+            "technical_examples": [
+              {
+                "AI & Systems": [
+                  "Built RAG system using LangChain, FAISS, and Claude API serving 10K+ daily users",
+                  "Reduced API latency by 60% through intelligent caching and query optimization",
+                  "Implemented CI/CD pipelines with Docker and GitHub Actions, reducing deployment time by 80%",
+                  "Architected microservices architecture using FastAPI, PostgreSQL, and Redis"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "employer": {
+        "name": "StartupCo",
+        "link": "https://startupco.example.co.uk"
+      },
+      "location": "London, United Kingdom",
+      "positions": [
+        {
+          "title": "Full Stack Engineer",
+          "start": "Jun 2018",
+          "end": "Dec 2019",
+          "detail": {
+            "formal": "Full-stack development for SaaS platform. Built features from frontend to database, working across the entire stack.",
+            "technical_examples": [
+              {
+                "Full Stack Development": [
+                  "Developed user authentication system handling 50K+ users with JWT and OAuth2",
+                  "Built real-time dashboard using React and WebSockets for live data updates",
+                  "Integrated payment processing with Stripe API, handling $2M+ annual transactions"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "employer": {
+        "name": "Software Solutions Ltd",
+        "link": "https://softwaresolutions.example.co.uk"
+      },
+      "location": "Bristol, United Kingdom",
+      "positions": [
+        {
+          "title": "Junior Developer",
+          "start": "Jan 2015",
+          "end": "May 2018",
+          "detail": {
+            "formal": "Entry-level position working on web applications and internal tools. Gained experience with modern web technologies and agile development.",
+            "technical_examples": [
+              {
+                "Web Development": [
+                  "Developed responsive web applications using HTML, CSS, and JavaScript",
+                  "Built internal tools and dashboards for operations team",
+                  "Participated in agile development process with daily standups and sprint planning"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "qualification": "MSc Computer Science",
+      "institution": "University of Edinburgh",
+      "start": 2012,
+      "end": 2013,
+      "location": "Edinburgh, United Kingdom",
+      "detail": {
+        "formal": "Specialised in Machine Learning and Distributed Systems. Completed dissertation on neural network optimisation techniques using gradient descent and backpropagation algorithms.",
+        "tech": "Python, TensorFlow, C++, CUDA, Linux"
+      }
+    },
+    {
+      "qualification": "BSc Computer Science (First Class Honours)",
+      "institution": "Imperial College London",
+      "start": 2009,
+      "end": 2012,
+      "location": "London, United Kingdom",
+      "detail": {
+        "formal": "Graduated with First Class Honours. Focused on algorithms, data structures, and software engineering fundamentals.",
+        "tech": "Java, C++, SQL, Linux"
+      }
+    }
+  ],
+  "skills": [
+    "Python",
+    "TypeScript",
+    "JavaScript",
+    "React",
+    "FastAPI",
+    "Django",
+    "Docker",
+    "Kubernetes",
+    "PostgreSQL",
+    "AI & Machine Learning",
+    "RAG Systems",
+    "API Design",
+    "System Design"
+  ],
+  "skill_aliases": {
+    "Python": ["python"],
+    "TypeScript": ["typescript"],
+    "JavaScript": ["javascript", "js"],
+    "React": ["react", "dashboard", "frontend"],
+    "FastAPI": ["fastapi", "api"],
+    "Django": ["django"],
+    "Docker": ["docker", "ci/cd", "deployment"],
+    "Kubernetes": ["kubernetes"],
+    "PostgreSQL": ["postgresql", "database"],
+    "AI & Machine Learning": ["ai", "llm", "claude", "langchain", "rag"],
+    "RAG Systems": ["rag", "langchain", "faiss", "vector"],
+    "API Design": ["api", "microservices", "fastapi", "latency", "caching"],
+    "System Design": ["architecture", "microservices", "system", "scalable"]
+  },
+  "projects": [
+    {
+      "name": "Career Toolkit",
+      "url": "https://github.com/yourusername/career-toolkit",
+      "description": "AI-powered career management toolkit for generating resumes, cover letters,\nand optimizing content for different platforms.\n",
+      "technologies": [
+        "Python",
+        "Jinja2",
+        "LangChain",
+        "FAISS"
+      ]
+    },
+    {
+      "name": "Personal Blog",
+      "url": "https://janedoe.example.com",
+      "description": "Technical blog about AI, software engineering, and career development.\nBuilt with Next.js and deployed on Vercel.\n"
+    }
+  ]
+}
