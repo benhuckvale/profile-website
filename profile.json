@@ -1,0 +1,675 @@
+{
+  "personal": {
+    "address": "0 Pretend Square, Fakebury, FB00 0ZZ",
+    "vague_address": {
+      "text": "Oxfordshire, United Kingdom",
+      "url": "https://www.google.com/maps/place/Oxfordshire/"
+    },
+    "name": {
+      "title": "Dr",
+      "first": "Benedict",
+      "short_first": "Ben",
+      "last": "Huckvale",
+      "letters": "PhD, CITP, MBCS"
+    },
+    "phone": {
+      "mobile": ""
+    },
+    "email": "fakeemail@example.com",
+    "linkedin": {
+      "text": "linkedin.com/in/ben-huckvale",
+      "url": "https://www.linkedin.com/in/ben-huckvale/"
+    },
+    "github": {
+      "text": "github.com/benhuckvale",
+      "url": "https://github.com/benhuckvale"
+    },
+    "huggingface": {
+      "text": "huggingface.co/benhuckvale",
+      "url": "https://huggingface.co/benhuckvale"
+    }
+  },
+  "professional_qualifications": [
+    {
+      "abbreviation": "PhD",
+      "name": "Doctor of Philosophy",
+      "institution": "University of Bristol",
+      "url": null
+    },
+    {
+      "abbreviation": "CITP",
+      "name": "Chartered IT Professional",
+      "institution": "BCS, The Chartered Institute for IT",
+      "url": "https://www.bcs.org/membership-and-registrations/get-registered/chartered-it-professional/citp-standard/"
+    },
+    {
+      "abbreviation": "MBCS",
+      "name": "Member of BCS",
+      "institution": "BCS, The Chartered Institute for IT",
+      "url": "https://www.bcs.org/membership-and-registrations/become-a-member/"
+    }
+  ],
+  "unicode_replacements": {
+    "gamma": "03B3",
+    "alpha": "03B1",
+    "beta": "03B2"
+  },
+  "statement": {
+    "formal": "Highly numerate and versatile software engineer, comfortable learning any new systems and technologies. Dedicated to unifying the different skills and activities of colleagues at all levels and in all disciplines to create a cohesive product and product-development process. Promoter of test-driven development, continuous integration and AI-based automation of development processes. Guided by agile philosophies and passionate about growing talent.",
+    "summary": [
+      "Lead Product Engineer",
+      "AI, Full-stack and Embedded development",
+      "Developer Enablement",
+      "Oxford Physics Graduate",
+      "Bristol PhD",
+      "CITP Registered",
+      "16 Years Commercial Software Experience",
+      "8 Years in Management",
+      "Expertise in C++, Python, Typescript",
+      "Statistical analysis",
+      "Data-engineering",
+      "Extensive Multi-platform build experience",
+      "DevOps Automation (CI/CD)",
+      "Scrum/Kanban",
+      "Stakeholder Management",
+      "Strategic Thinking",
+      "Software Architecture",
+      "Life Sciences Sector",
+      "Finance Sector"
+    ],
+    "tech": null
+  },
+  "work": [
+    {
+      "employer": {
+        "name": "Oxford Nanopore Technologies",
+        "link": "https://nanoporetech.com/"
+      },
+      "location": "Oxford, United Kingdom",
+      "order_preference": {
+        "page": 2
+      },
+      "positions": [
+        {
+          "title": "Director of Digital Microfluidics Software",
+          "order_preference": {
+            "page": 1,
+            "rank": 1
+          },
+          "highlight": true,
+          "start": "Nov 2023",
+          "end": "Nov 2025",
+          "detail": {
+            "formal": "Responsible for delivering the firmware, backend and frontend software for hardware products that incorporate digital microfluidics technology so as to perform fully hands-off automated sample preparation and sequencing. Expanded into activities outside my titled role to support the development of other products, drive AI-transformation initiatives, and develop coding/AI skills of staff.",
+            "management_examples": [
+              {
+                "Management": [
+                  "AI Champion and member of Gen AI working group: reviewing proposals, exploring technologies and presenting findings, and performing hands-on technical work.",
+                  "Developer enablement: Drove my own initiative to ensure all developers in company were enabled with AI coding assistants.",
+                  "Completed project involving staff and contractors to create a novel React frontend replacing a legacy Angular frontend, with backend API redesign.",
+                  "Transformed backend-only team into full-stack team, who have since been able to deliver on product needs without a separate UI team.",
+                  "Organised attendance to major programming conferences for my team and other software teams in the company."
+                ]
+              }
+            ],
+            "management_examples_more": [
+              "Led the selection and interviewing of candidates for my team as part of the company internship programme, then ensured the induction, coaching and development of those selected."
+            ],
+            "technical_examples": [
+              {
+                "Technical": [
+                  "Built internal projects with AI-features, including automated code reviewer and large codebase vector-index with MCP.",
+                  "Built a chromium-bot using playwright allowing for robotic process automation on systems with no API access.",
+                  "Built a slick navigable company org-chart in React/D3.",
+                  "Built a system manifest collection program for linux-based products hardware installed as a single binary.",
+                  "Completed a single-source-of-truth Python+React project that exports product mechanical design parameters to Python, C++ and Typescript, also rendering with react-three-fiber.",
+                  "Ported a streaming decryption and decompression module from C++ to Python to deploy it more easily to different contexts.",
+                  "Using sqlite, built a file-indexing database, search interface, and file-browsing frontend in Plotly, enabling scientists to find and link to relevant experimental data more quickly."
+                ]
+              }
+            ],
+            "tech": {
+              "languages": "C++20, C, Python, Javascript, Typescript",
+              "frameworks": "React, Plotly, Playwright",
+              "automation": "CMake, Gitlab, Conan, Ansible",
+              "platforms": "Linux, MacOS, Windows",
+              "tracking": "Git, JIRA, Confluence",
+              "embedded": "Raspberry Pi, TI, NXP",
+              "AI": "Codex, Claude Code, ChatGPT, SDXL, OpenAI API"
+            },
+            "highlight_words": "C++, Angular, Typescript"
+          }
+        }
+      ]
+    },
+    {
+      "employer": "Self-employed",
+      "order_preference": {
+        "page": 1,
+        "rank": 2
+      },
+      "positions": [
+        {
+          "title": "Software Engineer Expert",
+          "highlight": true,
+          "start": "May 2025",
+          "end": "Oct 2025",
+          "detail": {
+            "formal": [
+              "Independent contractor for [Mercor Intelligence](https://www.linkedin.com/company/mercor-intelligence/) providing my expertise in software engineering to improve models for a top AI lab."
+            ],
+            "tech": {
+              "languages": "C++, C, Python, Rust, Bash, Make",
+              "devops": "docker"
+            }
+          }
+        },
+        {
+          "title": "AI Trainer",
+          "highlight": true,
+          "start": "Apr 2024",
+          "end": "Apr 2025",
+          "detail": {
+            "formal": [
+              "Performed hundreds of hours of tasks for DataAnnotation's AI training web platform. I was able to apply my expertise in software engineering and academic background in physics and maths."
+            ],
+            "formal_extra": [
+              "Comfortable addressing sensitive issues and safety topics."
+            ],
+            "tech": {
+              "languages": "C++, C, Python, Java, C#, Javascript, Typescript, Swift, Bash, Make"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "employer": "B&R Huckvale Ltd",
+      "location": "Oxfordshire, United Kingdom",
+      "order_preference": {
+        "page": 1,
+        "rank": 3
+      },
+      "positions": [
+        {
+          "title": "Director",
+          "highlight": true,
+          "start": "Sep 2022",
+          "end": "present",
+          "detail": {
+            "formal": "Our company provides outdoor education mainly to preschoolers, as well as providing a front for our contract work.",
+            "technical_examples": [
+              {
+                "Technical": [
+                  "Performed all accounting duties, corporate filing, tax compliance and payroll",
+                  "Setup and maintained infrastructure for Wordpress site that takes bookings and payments."
+                ]
+              }
+            ],
+            "tech": {
+              "languages": "Python, bash",
+              "webops": "nginx, docker, wordpress, stripe, paypal, cloudflare",
+              "accounting": "beancount"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "employer": {
+        "name": "Oxford Nanopore Technologies",
+        "link": "https://nanoporetech.com/"
+      },
+      "location": "Oxford, United Kingdom",
+      "order_preference": {
+        "page": 2
+      },
+      "positions": [
+        {
+          "title": "Associate Director of VolTRAX Software",
+          "highlight": true,
+          "start": "Nov 2017",
+          "end": "Oct 2023",
+          "detail": {
+            "formal": "Oxford Nanopore's VolTRAX product performs automated sample preparation using the latest digital microfluidics technology. I directed the development of all software behind the product involving R&D tools, data analysis reports, manufacturing interfaces and customer-facing solutions. I also contributed principally to its codebase.",
+            "management_examples": [
+              {
+                "Management": [
+                  "Built and managed team to bring product to commercial operation.",
+                  "Delivered software to perform automated PCR-based genomic sequencing library preparation, including for COVID-19.",
+                  "Delivered a telemetry and tracking solution involving collection of data from stages of manufacturing of hardware and consumable, through to usage and debug data in customer scenario.",
+                  "Organised training events. For example, to get my C++/Python developers into developing in Typescript/React.",
+                  "Directed agency team to produce a new frontend.",
+                  "Honed consistent scrum process, with well-regarded sprint review. Team considered to follow agile most recognisably by external consultant."
+                ]
+              }
+            ],
+            "technical_examples": [
+              {
+                "Technical": [
+                  "Led development of multi-platform, multi-threaded C++ and Python platform backend communicating over USB to hardware.",
+                  "Led development of a real-time 2D blob-tracking system in C++.",
+                  "Used CMake/Gitlab to create CI/CD pipeline to build, test, sign and deploy to Windows, MacOS and Linux.",
+                  "Developed Nsis installer, first standalone, then via Electron-builder.",
+                  "Developed CMake-driven Arduino project, also compiling for PC.",
+                  "Developed well-normalised database application for recording temperatures from multiple sources using Python and Sqlite.",
+                  "Developed internal microservices, using express.js and MongoDB.",
+                  "Configured Ansible playbooks for CI nodes, lab and development machines"
+                ]
+              }
+            ],
+            "realtime": [
+              "I also performed much of the development work myself, leading the creation of the core part of the system, which involves the signal-processing of 2D data in real-time so as to track droplets moving and splitting and or merging as a sample preparation protocol progress.",
+              "Another subsystem was telemetry which contributes to the overall observability of our software. I adapted and re-used an existing library for this from another project and then went on to design the schema and schedule over which messages should be sent according to realtime processes. Lastly I communicated this, and going changes we made, to a team responsible for rendering this in a formal business reporting system. We also developed our own R&D interface to this same data.",
+              "In another project I wrote a time-series recording database in Python and SQLite which we used for a thermal calibration process. We decoupled the storage of experimental data versus its analysis which allowed for re-analysis of the data without repeating an experiment. This became important later when we found we needed to adjust our analysis approach. The solution involved saving data to MongoDB and making it available (to the analysis scripts and operator frontend) via microservices.",
+              "As an example of the kind of impact I have in and around a team - At one point I realised we had ended up with multiple different analysis projects (for analysis of our telemetry/debug data) by various team members and also those outside my immediate team in a variety of places. I saw this was happening and convinced all to move to a single analysis dashboard project that unified efforts in one place and ensured access to the same knowledge by all. I researched the best Python/flask/deployment architecture for this to some detail and delegated the work to a team member. The project is now the primary hub for answering questions about experiments that have been performed and is also the place where new analyses are implemented."
+            ],
+            "architecture": [
+              "Recently we needed to construct a new customer-facing GUI to handle certain major UX issues that had been identified. My strategy was that a digital agency team should write a new GUI and make their own mock backend for it with freedom to define and document the optimum API for the required user experience. We were then able to follow up with changes to the backend to implement that API.",
+              "There was more to it than this however. Since the GUI was to be written in React, and my team were skilled in C++/Python, I arranged a training course for them so that they could upskill. After this course at least two team members were immediately able to move forward and start being productive on the front end. Moreover, my intention was to end the history of split frontend and backend teams, and move towards a full-stack team to suit our present needs to allow for any team member to prototype a complete R&D feature with frontend and backend facets.",
+              "Another project I initiated came from the realisation of seeing multiple different analysis projects by various team members (including outside my immediate team) in a variety of places. I saw this was happening and convinced all to move to a single analysis dashboard project that unified efforts in one place and ensured access to the same knowledge by all. I researched the best Python/Flask/deployment architecture for this and delegated the work to a team member. The project is now the primary hub for answering questions about experiments that have been performed and is also the place where new analyses are implemented.",
+              "Our system involves writing Python scripts to automate laboratory preparation. An original prototype to explore the space had been quickly put together for a product demo, but I devised a longer term solution that decoupled script and its validation, from its actual running by having it be compiled to an intermediate format. This meant that the tools project for developing a script could advance at its own pace without being tied to the release schedule of the runtime engine. More importantly it meant that scripts could be published on an independent schedule to the engine.  I created a system for automatically generating an interface file for ensuring compatibility which further removed any library dependencies between compilation and runtime projects.",
+              "I directed the creation of a more formal set of architecture diagrams for our project using the C4 model and Plantuml. I have also encouraged team members to produce diagrams as needed in Lucidchart and draw.io.  I set up automatic reports on our code database, including compile-time metrics between branches, and the plotting of a dependency chart between namespaces.  These have been insightful in guiding us towards faster and simpler builds, and decoupled modules.",
+              "We needed to develop a more elaborate thermal calibration approach for our hardware. This involved an Arduino device that measured temperatures in the manufacturing setting. I designed the recording database in Python and Sqlite to do this, whilst delegating a team member to program the Arduino, and write analysis scripts.  I ensured two key principles in our design. Firstly we decoupled the storage of experimental data versus its analysis which allowed for re-analysis of the data without repeating an experiment. This became important later when we found we needed to adjust our analysis approach. Secondly, to be compared to the previous low-tech thermal calibration process involving spreadsheets, I drove the concept of an interface for the assembly technician which allowed them to run, apply and review calibrations quickly without having to manually handle any data. The solution involved saving data to MongoDB and making it available (to the analysis scripts and operator frontend) via microservices. The result was the technician had capacity to run more and longer experiments giving increased confidence in the process.",
+              "I also viewed this as a project for exploring better testing of firmware. The fact is many embedded board kits come with tooling designed to be used from an IDE whilst programmatic usage and continuous integration is not as well considered. I was able to leverage my expert knowledge of CMake to accomplish continuous integration for this and write jobs that compiled the firmware into a local binary against stub driver headers that could be tested on the development machine or CI node."
+            ],
+            "tech": {
+              "languages": "C++14, C++20, Python, Javascript, Typescript",
+              "frameworks": "Angular, React",
+              "databases": "MongoDB, Sqlite",
+              "automation": "CMake, Gitlab, Conan, Ansible",
+              "platforms": "Linux, MacOS, Windows",
+              "embedded": "Arduino, EZ-USB FX3",
+              "tracking": "Git, JIRA, Confluence"
+            },
+            "highlight_words": "C++, C#, Nsis, Electron"
+          }
+        },
+        {
+          "title": "Principal Software Engineer",
+          "start": "Nov 2016",
+          "end": "Oct 2017",
+          "detail": {
+            "formal": "Created an initial prototype of the software for an early commercial launch of the first VolTRAX product.",
+            "management_examples": [
+              {
+                "Management": [
+                  "Began hiring and training team members and established working relationship with partner firm."
+                ]
+              }
+            ],
+            "technical_examples": [
+              {
+                "Technical": [
+                  "Designed API with partner firm allowing reuse of their R&D backend within our product cutting the time to market.",
+                  "Wrote the C++/C# interop code required to do this.",
+                  "Designed and implemented a C++-based http/websocket application library that provided routing and restful convenience abstractions around websocketpp.",
+                  "Designed another API and backend for a front-end developer to use to build initial customer GUI."
+                ]
+              }
+            ],
+            "architecture": [
+              "I was able to review the adverse design choices made in the earlier conception of MinKNOW which had a long-running impact and consider new options for the VolTRAX software. Chiefly I decided on a single process architecture to avoid the use of shared memory. Secondly I used test-driven development techniques from the outset."
+            ],
+            "tech": {
+              "languages": "C++11, C#, Python, Javascript",
+              "frameworks": ".NET, C++/CLI",
+              "automation": "CMake, Gitlab",
+              "platforms": "Linux, MacOS, Windows",
+              "tracking": "Git, JIRA, Confluence"
+            },
+            "highlight_words": "C++, C#, websocketpp"
+          }
+        },
+        {
+          "title": "Senior Software Engineer",
+          "start": "Nov 2013",
+          "end": "Oct 2016",
+          "detail": {
+            "formal": "Contibuted principally to the MinKNOW instrument software for the flagship product launch.",
+            "technical_examples": [
+              {
+                "Technical": [
+                  "Developed interprocess buffering system, using boost::interprocess.",
+                  "Productionised R&D software by, for example, replacing singleton/globals patterns and excessive templating, and removing obsolete or unused code.",
+                  "Developed Python-scripting API and assisted scientists in obtaining working experimental scripts.",
+                  "Wrote and contributed most of the unit tests including tests for legacy code that did not have tests.",
+                  "Contributed principally to technology stack migrations - C++03 to C++11; handwritten .vsproj/Make to CMake; Subversion to Git; Jenkins to Gitlab; Cppunit to Catch tests."
+                ]
+              }
+            ],
+            "architecture": [
+              "The codebase had historically been developed quickly and singletons/globals had been used as a shortcut in many places. I personally removed a lot of these carefully and gradually over a period of time so as not to interrupt business R&D efforts. The result was that unit tests became easier to write and so testing and confidence in the codebase grew. I also wrote and contributed most of the unit tests during this period of time. These helped drive further architectural changes to make the code more testable and improve reliability ready for product launch."
+            ],
+            "tech": {
+              "languages": "C++11, Python, Javascript",
+              "automation": "Make, CMake, Gitlab",
+              "platforms": "Linux, MacOS, Windows",
+              "tracking": "Subversion, Git, JIRA, Confluence"
+            },
+            "highlight_words": "C++03, .vsproj, Cppunit, Catch, boost::interprocess"
+          }
+        },
+        {
+          "title": "Computational Scientist",
+          "start": "May 2012",
+          "end": "Oct 2013",
+          "detail": {
+            "formal": "Took offline signal processing algorithms re-implemented them in C++ to run continuously and in real-time.",
+            "technical_examples": [
+              {
+                "Technical": [
+                  "Delivered working real-time analysis system for the MinION DNA sequencing product.",
+                  "Developed a realtime continuous multiple sliding window algorithm working on interprocess buffers, and test suite.",
+                  "Developed a synthetic signal generator that converted a base sequence into a reasonably realistic device signal."
+                ]
+              }
+            ],
+            "architecture": [
+              "On arrival at the company I had noticed attempts to optimise the code by using templates had made it less malleable. I refactored and removed these with no overall cost to performance and the result was the code was then more amenable to rearrangement and more suitable to an earlier stage of product development."
+            ],
+            "tech": {
+              "languages": "C++03, Python, Javascript",
+              "automation": "Make",
+              "platforms": "Linux, MacOS, Windows",
+              "tracking": "Subversion"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "employer": "Trafigura",
+      "location": "London, United Kingdom",
+      "positions": [
+        {
+          "title": "Front Office Systems Developer",
+          "highlight": true,
+          "start": "Jan 2011",
+          "end": "Apr 2012",
+          "detail": {
+            "formal": "Developed P&L modules for commodities trading from scratch. Made principal full-stack contributions (DB design, server, front-end) using technologies that were unfamiliar to me at the time.",
+            "technical_examples": [
+              {
+                "Technical": [
+                  "Implemented frontend using C# for model and view-model functions, and WPF XAML for views.",
+                  "Developed Scala backend functions to fulfil API used by front-end, which made queries I developed in Oracle SQL to read or update the database."
+                ]
+              }
+            ],
+            "architecture": [
+              "I pushed an MVVM data-driven design of the front-end. This architectural choice was well-supported by Windows Presentation Foundation. We used behaviour-driven development to influence the design."
+            ],
+            "tech": {
+              "languages": "Scala, C#",
+              "frameworks": "WPF",
+              "automation": "TeamCity",
+              "databases": "Oracle SQL",
+              "tracking": "Git",
+              "platforms": "Linux, Windows"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "employer": "ION Trading",
+      "location": "London, United Kingdom",
+      "positions": [
+        {
+          "title": "Technical Consultant",
+          "start": "Nov 2008",
+          "end": "Dec 2010",
+          "detail": {
+            "formal": "Maintained and developed the Anvil repo and securities finance trading platform for international clients.",
+            "technical_examples": [
+              {
+                "Technical": [
+                  "Used Perl, Bash and Python to automate recreation of client environments from database dumps in order to reproduce customer issues.",
+                  "Wrote and fixed Sybase SQL scripts and used a proprietary stack-based and form layout language to fix back-office and trading screen issues.",
+                  "Contributed fixes to backend modules in C++ and Perl.",
+                  "Worked on an on-site upgrade of heavily customised client installation in a team of two (essentially \"forward-deployed\")."
+                ]
+              }
+            ],
+            "tech": {
+              "languages": "Perl, Python, C++03",
+              "automation": "Bash",
+              "databases": "Sybase SQL",
+              "platforms": "Linux",
+              "tracking": "Subversion"
+            },
+            "highlight_words": "C++, stack-based"
+          }
+        }
+      ]
+    },
+    {
+      "employer": "Fountains",
+      "location": "Banbury, United Kingdom",
+      "positions": [
+        {
+          "title": "IT Support Analyst",
+          "start": "Jan 2003",
+          "end": "Jun 2003",
+          "detail": {
+            "formal": "Tasks involved setting up and configuring machines independently at remote office locations.",
+            "tech": {
+              "platforms": "Windows"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "qualification": "PhD in Experimental Particle Physics",
+      "institution": "University of Bristol",
+      "start": 2004,
+      "end": 2008,
+      "location": "Bristol, United Kingdom",
+      "detail": {
+        "formal": "Wrote control and monitoring software for the Global Calorimeter Trigger of the CMS detector at the Large Hadron Collider, CERN. I also studied anomalous couplings of the W W gamma vertex using a Monte Carlo detector simulation, batch computing and my own statistical analysis pipeline in Python which did a maximum likelihood analysis, with plots in matplotlib, to show the sensitivity of CMS to measure the anomalous effect.",
+        "tech": "C++, Python, Java, CVS, Latex, Linux"
+      }
+    },
+    {
+      "qualification": "MPhys, Physics",
+      "institution": "University of Oxford",
+      "start": 1999,
+      "end": 2003,
+      "detail": {
+        "formal": "Options: Particle Physics, Theoretical Physics and Financial Market Complexity (included option-pricing theory); Vacations: Easter project with Zeus Experiment (Oxford), CERN Summer School (Geneva);",
+        "tech": "Pascal, C, C++, Java, Fortran, Latex, Linux",
+        "formal_detail": "Project: Spectroscopy of Lead; Part B options: Particle Physics, Theoretical Physics and Financial Market Complexity; Vacations: Easter project with Zeus Experiment (Oxford), CERN Summer School (Geneva); "
+      }
+    },
+    {
+      "qualification": "GCSE/A Levels",
+      "hide": true,
+      "institution": "St. Laurence School, Bradford-on-Avon",
+      "start": 1992,
+      "end": 1999
+    }
+  ],
+  "skills": [
+    "C++",
+    "Python",
+    "TypeScript",
+    "React",
+    "AI & Machine Learning",
+    "Technical Leadership",
+    "Software Architecture",
+    "DevOps & CI/CD",
+    "Developer Enablement",
+    "Data Engineering",
+    "Real-time Systems",
+    "Embedded Systems",
+    "Process Automation",
+    "Continuous Integration",
+    "Bookkeeping/Accountancy",
+    "cmake"
+  ],
+  "skill_aliases": {
+    "AI & Machine Learning": [
+      "ai",
+      "machine learning",
+      "ml",
+      "llm",
+      "gpt",
+      "claude",
+      "vector",
+      "rag",
+      "chatbot",
+      "ai model",
+      "language model",
+      "statistical analysis",
+      "maximum likelihood",
+      "monte carlo",
+      "statistical"
+    ],
+    "Technical Leadership": [
+      "leadership",
+      "led",
+      "lead",
+      "managed",
+      "manage",
+      "managing",
+      "directed",
+      "director",
+      "team lead",
+      "team",
+      "staff",
+      "built team",
+      "build",
+      "building",
+      "hiring",
+      "mentored",
+      "coached",
+      "develop",
+      "developing",
+      "coordinate",
+      "facilitate",
+      "organise",
+      "organize",
+      "drove",
+      "initiative"
+    ],
+    "Software Architecture": [
+      "architect",
+      "architecture",
+      "designed",
+      "design",
+      "microservice",
+      "system design",
+      "c4 model",
+      "diagram"
+    ],
+    "DevOps & CI/CD": [
+      "devops",
+      "ci/cd",
+      "ci cd",
+      "pipeline",
+      "gitlab",
+      "docker",
+      "ansible",
+      "deployment",
+      "build"
+    ],
+    "Developer Enablement": [
+      "enablement",
+      "developer experience",
+      "coding assistant",
+      "training",
+      "upskill",
+      "conference"
+    ],
+    "Data Engineering": [
+      "database",
+      "sqlite",
+      "mongodb",
+      "data",
+      "indexing",
+      "etl",
+      "file-indexing"
+    ],
+    "Real-time Systems": [
+      "real-time",
+      "realtime",
+      "signal processing",
+      "tracking",
+      "streaming",
+      "blob-tracking"
+    ],
+    "Embedded Systems": [
+      "embedded",
+      "firmware",
+      "raspberry pi",
+      "arduino",
+      "hardware",
+      "microcontroller"
+    ],
+    "Process Automation": [
+      "automation",
+      "automated",
+      "automat",
+      "robotic process automation",
+      "playwright",
+      "bot"
+    ],
+    "Continuous Integration": [
+      "continuous integration",
+      "ci",
+      "gitlab",
+      "github actions",
+      "jenkins",
+      "travis",
+      "circleci",
+      "build pipeline",
+      "test automation",
+      "automated testing",
+      "integration testing"
+    ],
+    "Bookkeeping/Accountancy": [
+      "bookkeeping",
+      "accountancy",
+      "accounting",
+      "accounts",
+      "tax compliance",
+      "payroll",
+      "corporate filing",
+      "vat",
+      "self-assessment",
+      "company accounts"
+    ]
+  },
+  "projects": [
+    {
+      "name": "hf-chatbot-demo",
+      "url": "https://github.com/benhuckvale/hf-chatbot-demo",
+      "description": "A RAG-powered customer support chatbot for ecommerce sites, hosted on Hugging Face Spaces.",
+      "technologies": [
+        "Python"
+      ],
+      "tags": [
+        "chatbot",
+        "huggingface",
+        "ai"
+      ],
+      "github_stars": 0,
+      "_source": "github",
+      "_github_updated_at": "2025-12-05T18:26:53+00:00",
+      "featured": true,
+      "priority": 1,
+      "demo_url": "https://huggingface.co/spaces/benhuckvale/chatbot-demo",
+      "custom_description": "Interactive chatbot demo deployed on Hugging Face Spaces.\n",
+      "highlights": [
+        "Live interactive demo (may take 30-60s to wake from sleep)",
+        "RAG-powered customer support chatbot.",
+        "Deployed on Hugging Face infrastructure"
+      ],
+      "category": "AI/ML Demos"
+    }
+  ]
+}
