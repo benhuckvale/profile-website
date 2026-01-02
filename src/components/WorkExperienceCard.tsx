@@ -137,7 +137,7 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
 
               {position.detail?.tech && Object.keys(position.detail.tech).length > 0 && (
                 <div className="tech-tags">
-                  {Object.entries(position.detail.tech).map(([category, techList]: [string, any], idx: number) => (
+                  {Object.entries(position.detail.tech).map(([_category, techList]: [string, any], idx: number) => (
                     <React.Fragment key={idx}>
                       {(Array.isArray(techList) ? techList : techList.split(', ')).map((tech: string, i: number) => (
                         <span key={i} className="tech-tag">{tech.trim()}</span>

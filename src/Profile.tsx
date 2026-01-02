@@ -48,8 +48,9 @@ const Profile: React.FC = () => {
   const getSkillUsage = (skill: string) => {
     // Get search terms: skill name + aliases
     const searchTerms = [skill.toLowerCase()];
-    if (skill_aliases && skill_aliases[skill]) {
-      searchTerms.push(...skill_aliases[skill].map((alias: string) => alias.toLowerCase()));
+    const aliases = skill_aliases as Record<string, string[]>;
+    if (aliases && aliases[skill]) {
+      searchTerms.push(...aliases[skill].map((alias: string) => alias.toLowerCase()));
     }
     const usage: any[] = [];
 

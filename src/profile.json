@@ -2,15 +2,18 @@
   "personal": {
     "name": {
       "first": "Jane",
+      "short_first": "Jane",
       "last": "Doe",
-      "title": "Dr"
+      "title": "Dr",
+      "letters": "PhD, CEng"
     },
     "email": "jane.demo@example.com",
     "phone": {
       "mobile": "+44 7700 900123"
     },
     "vague_address": {
-      "text": "Demoshire, United Kingdom"
+      "text": "Demoshire, United Kingdom",
+      "url": "https://www.google.com/maps/place/Demoshire"
     },
     "linkedin": {
       "text": "linkedin.com/in/jane-demo-doe",
@@ -19,7 +22,30 @@
     "github": {
       "text": "github.com/jane-demo-doe",
       "url": "https://github.com/jane-demo-doe"
+    },
+    "huggingface": {
+      "text": "huggingface.co/jane-demo-doe",
+      "url": "https://huggingface.co/jane-demo-doe"
     }
+  },
+  "professional_qualifications": [
+    {
+      "abbreviation": "PhD",
+      "name": "Doctor of Philosophy",
+      "institution": "University of Edinburgh",
+      "url": null
+    },
+    {
+      "abbreviation": "CEng",
+      "name": "Chartered Engineer",
+      "institution": "Engineering Council UK",
+      "url": "https://www.engc.org.uk/ceng"
+    }
+  ],
+  "unicode_replacements": {
+    "gamma": "03B3",
+    "alpha": "03B1",
+    "beta": "03B2"
   },
   "statement": {
     "formal": "[Obviously Not Real] Senior Software Engineer with 8+ years of experience building scalable AI-powered systems. Specialized in RAG architectures, vector databases, and production ML systems. Passionate about bridging the gap between cutting-edge AI research and practical, user-focused applications."
