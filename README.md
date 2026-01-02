@@ -1,6 +1,6 @@
 # Profile Website
 
-A modern, cyberpunk-themed profile website built with React, TypeScript, and Vite. Displays career history, skills, education, and projects with a clean, interactive interface.
+A modern, cyberpunk-themed profile website built with React, TypeScript, and Vite. Displays career history, skills, education, and projects with an interactive interface.
 
 ---
 
@@ -295,12 +295,3 @@ MIT License - Feel free to use this template for your own profile!
 
 - [my-career-data](https://github.com/benhuckvale/my-career-data) - Private repository with career data (YAML format)
 - [career-toolkit](https://github.com/benhuckvale/career-toolkit) - Python library for transforming career data into multiple formats
-
----
-
-**Author**: Ben Huckvale
-**Contact**: [LinkedIn](https://linkedin.com/in/ben-huckvale) | [GitHub](https://github.com/benhuckvale)
-
----
-
-*This website is built with the philosophy of separating code from content, allowing the template to be open source while keeping personal data private.*
