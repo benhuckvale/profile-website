@@ -11,6 +11,7 @@ const Profile: React.FC = () => {
   const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [showSkillTooltip, setShowSkillTooltip] = useState(false);
+  const [portraitError, setPortraitError] = useState(false);
 
   // Group work entries by employer name for display
   const groupedWork = React.useMemo(() => {
@@ -256,34 +257,50 @@ const Profile: React.FC = () => {
             )}
           </div>
 
-          <img
-            src="/assets/portrait.jpeg"
-            alt={`${personal.name.first} ${personal.name.last}`}
-            style={{
-              width: '150px',
-              height: '150px',
-              borderRadius: '50%',
-              objectFit: 'cover',
-              border: '3px solid var(--color-primary-accent)',
-              boxShadow: '0 0 30px rgba(47, 155, 255, 0.6), 0 0 60px rgba(47, 155, 255, 0.3)',
-              flexShrink: 0
-            }}
-          />
-
-          {/*
-          <img
-            src="/assets/cyber-portrait.jpeg"
-            alt={`${personal.name.first} ${personal.name.last} - Cyber`}
-            style={{
-              width: '150px',
-              height: '150px',
-              borderRadius: '50%',
-              objectFit: 'cover',
-              border: '3px solid var(--color-secondary-accent)',
-              boxShadow: '0 0 30px rgba(90, 214, 255, 0.6), 0 0 60px rgba(90, 214, 255, 0.3)',
-            }}
-          />
-         */}
+          {!portraitError ? (
+            <img
+              src="/assets/portrait.jpeg"
+              alt={`${personal.name.first} ${personal.name.last}`}
+              onError={() => setPortraitError(true)}
+              style={{
+                width: '150px',
+                height: '150px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                border: '3px solid var(--color-primary-accent)',
+                boxShadow: '0 0 30px rgba(47, 155, 255, 0.6), 0 0 60px rgba(47, 155, 255, 0.3)',
+                flexShrink: 0
+              }}
+            />
+          ) : (
+            <svg
+              width="150"
+              height="150"
+              viewBox="0 0 150 150"
+              style={{
+                borderRadius: '50%',
+                border: '3px solid var(--color-primary-accent)',
+                boxShadow: '0 0 30px rgba(47, 155, 255, 0.6), 0 0 60px rgba(47, 155, 255, 0.3)',
+                flexShrink: 0
+              }}
+            >
+              <rect width="150" height="150" fill="rgba(47, 155, 255, 0.1)" />
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dominantBaseline="central"
+                style={{
+                  fontSize: '48px',
+                  fontWeight: 'bold',
+                  fill: 'var(--color-primary-accent)',
+                  fontFamily: 'var(--font-heading)'
+                }}
+              >
+                {personal.name.first[0]}{personal.name.last[0]}
+              </text>
+            </svg>
+          )}
         </div>
 
         <div className="profile-links">
