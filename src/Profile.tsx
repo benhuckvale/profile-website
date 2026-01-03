@@ -17,7 +17,7 @@ const Profile: React.FC = () => {
   // Fetch production data, fallback to demo data
   useEffect(() => {
     const baseUrl = import.meta.env.BASE_URL;
-    fetch(`${baseUrl}profile.json`)
+    fetch(`${baseUrl}/profile.json`)
       .then(res => res.json())
       .then(data => {
         setProfileData(data);
@@ -279,7 +279,7 @@ const Profile: React.FC = () => {
 
           {!portraitError ? (
             <img
-              src="/assets/portrait.jpeg"
+              src={`${import.meta.env.BASE_URL}/portrait.jpeg`}
               alt={`${personal.name.first} ${personal.name.last}`}
               onError={() => setPortraitError(true)}
               style={{
