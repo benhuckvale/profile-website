@@ -1,17 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaLinkedin, FaGithub, FaEnvelope, FaBriefcase, FaGraduationCap, FaTools, FaRocket, FaTimes, FaInfoCircle } from 'react-icons/fa';
 import { SiHuggingface } from 'react-icons/si';
-import profileData from './profile.json';
+import demoData from './profile.json';
 import WorkExperienceCard from './components/WorkExperienceCard';
 import EducationCard from './components/EducationCard';
 import ProjectCard from './components/ProjectCard';
 import './Profile.css';
 
 const Profile: React.FC = () => {
-  const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
+  const [profileData, setProfileData] = useState(demoData);
+  const [_isLoading, setIsLoading] = useState(true);
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [showSkillTooltip, setShowSkillTooltip] = useState(false);
   const [portraitError, setPortraitError] = useState(false);
+
+  // Fetch production data, fallback to demo data
+  useEffect(() => {
+    const baseUrl = import.meta.env.BASE_URL;
+    fetch(`${baseUrl}profile.json`)
+      .then(res => res.json())
+      .then(data => {
+        setProfileData(data);
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.log('Using demo data (production data not available):', err);
+        setProfileData(demoData);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
 
   // Group work entries by employer name for display
   const groupedWork = React.useMemo(() => {
@@ -192,15 +211,15 @@ const Profile: React.FC = () => {
   const renderCredentials = () => {
     if (!personal.name.letters) return null;
 
-    const letters = personal.name.letters.split(',').map(l => l.trim());
+    const letters = personal.name.letters.split(',').map((l: string) => l.trim());
     const qualMap = new Map(
       (professional_qualifications || []).map((q: any) => [q.abbreviation, q])
     );
 
     return (
       <p className="credentials">
-        {letters.map((letter, index) => {
-          const qual = qualMap.get(letter);
+        {letters.map((letter: string, index: number) => {
+          const qual: any = qualMap.get(letter);
           const isLast = index === letters.length - 1;
 
           if (qual && qual.url) {
@@ -405,7 +424,7 @@ const Profile: React.FC = () => {
             Projects
           </h2>
           <div className="section-content">
-            {projects.map((project, index) => (
+            {projects.map((project: any, index: number) => (
               <ProjectCard key={index} project={project} />
             ))}
           </div>
@@ -432,7 +451,7 @@ const Profile: React.FC = () => {
         <div className="section-content">
           {education
             .filter((edu: any) => !edu.hide)
-            .map((edu, index) => (
+            .map((edu: any, index: number) => (
               <EducationCard key={index} edu={edu} unicodeReplacements={unicode_replacements} />
             ))}
         </div>
