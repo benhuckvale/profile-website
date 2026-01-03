@@ -195,6 +195,24 @@ To customize the theme, edit CSS variables in `src/styles/cyberpunk-theme.css`.
 
 ## Deployment
 
+### Base Path Configuration
+
+The website uses the `VITE_BASE_PATH` environment variable to configure the base URL path:
+
+- **Default**: `/` (root) - for custom domains or Cloudflare Pages
+- **GitHub Pages**: `/profile-website/` (set in workflow)
+- **Subdirectory hosting**: `/your-path/` (set as needed)
+
+**Local development**: Defaults to `/` (no environment variable needed)
+
+**In CI/CD workflows**: Set `VITE_BASE_PATH` before running `npm run build`:
+```bash
+VITE_BASE_PATH=/profile-website/ npm run build  # GitHub Pages
+VITE_BASE_PATH=/ npm run build                  # Custom domain
+```
+
+This allows you to deploy to any hosting platform (GitHub Pages, Cloudflare Pages, Vercel, etc.) without modifying the source code.
+
 ### GitHub Pages (Recommended)
 
 The project is configured to deploy to GitHub Pages automatically:
@@ -202,20 +220,31 @@ The project is configured to deploy to GitHub Pages automatically:
 1. Push changes to `main` branch
 2. GitHub Actions workflow runs
 3. Fetches latest data from `my-career-data`
-4. Builds and deploys to `gh-pages` branch
+4. Builds with `VITE_BASE_PATH=/profile-website/`
+5. Deploys to `gh-pages` branch
 
 **Setup**:
 1. Go to repository Settings → Pages
 2. Source: Deploy from branch
 3. Branch: `gh-pages`, folder: `/` (root)
 
+### Cloudflare Pages
+
+To deploy to Cloudflare Pages with a custom domain:
+
+1. Set `VITE_BASE_PATH=/` (or omit it)
+2. Update workflow to use Cloudflare Wrangler instead of GitHub Pages action
+3. Build and deploy to Cloudflare
+
 ### Other Hosting
 
 The built site (in `dist/`) can be deployed to:
-- Vercel
-- Netlify
-- Cloudflare Pages
+- Vercel (use `VITE_BASE_PATH=/`)
+- Netlify (use `VITE_BASE_PATH=/`)
+- Cloudflare Pages (use `VITE_BASE_PATH=/`)
 - Any static hosting service
+
+For subdirectory deployments, set `VITE_BASE_PATH` accordingly.
 
 ---
 
