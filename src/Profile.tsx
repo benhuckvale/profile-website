@@ -8,6 +8,7 @@ import ProjectCard from './components/ProjectCard';
 import './Profile.css';
 
 const Profile: React.FC = () => {
+  const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash
   const [profileData, setProfileData] = useState(demoData);
   const [_isLoading, setIsLoading] = useState(true);
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
@@ -16,7 +17,6 @@ const Profile: React.FC = () => {
 
   // Fetch production data, fallback to demo data
   useEffect(() => {
-    const baseUrl = import.meta.env.BASE_URL;
     fetch(`${baseUrl}/profile.json`)
       .then(res => res.json())
       .then(data => {
@@ -28,7 +28,7 @@ const Profile: React.FC = () => {
         setProfileData(demoData);
         setIsLoading(false);
       });
-  }, []);
+  }, [baseUrl]);
 
   const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
 
@@ -279,7 +279,7 @@ const Profile: React.FC = () => {
 
           {!portraitError ? (
             <img
-              src={`${import.meta.env.BASE_URL}/portrait.jpeg`}
+              src={`${baseUrl}/portrait.jpeg`}
               alt={`${personal.name.first} ${personal.name.last}`}
               onError={() => setPortraitError(true)}
               style={{
