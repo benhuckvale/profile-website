@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { FaUser, FaFileAlt } from 'react-icons/fa';
 import Profile from './Profile';
 import Blog from './Blog';
@@ -11,8 +11,8 @@ function Navigation() {
       <ul className="flex justify-start gap-8 py-4 ml-8">
         <li>
           <Link
-            to="/"
-            className={`nav-link ${location.pathname === '/' ? 'nav-link-active' : ''}`}
+            to="/profile"
+            className={`nav-link ${location.pathname === '/profile' ? 'nav-link-active' : ''}`}
           >
             <FaUser style={{ display: 'inline', marginRight: '0.5rem' }} />
             Profile
@@ -39,7 +39,8 @@ function App() {
         <Navigation />
         <main>
           <Routes>
-            <Route path="/" element={<Profile />} />
+            <Route path="/" element={<Navigate to="/profile" replace />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/blog" element={<Blog />} />
           </Routes>
         </main>
