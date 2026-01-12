@@ -30,7 +30,7 @@ const Profile: React.FC = () => {
       });
   }, [baseUrl]);
 
-  const { personal, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
+  const { personal, professions, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
 
   // Group work entries by employer name for display
   const groupedWork = React.useMemo(() => {
@@ -264,6 +264,16 @@ const Profile: React.FC = () => {
           <div style={{ textAlign: 'left', flex: 1, minWidth: '300px' }}>
             <h1>{personal.name.short_first || personal.name.first} {personal.name.last}</h1>
             {renderCredentials()}
+            {professions && professions.length > 0 && (
+              <p style={{
+                fontSize: '1rem',
+                color: 'var(--color-secondary-accent)',
+                marginTop: '0.5rem',
+                marginBottom: '0.5rem'
+              }}>
+                {professions.join(' - ')}
+              </p>
+            )}
             <p className="location">{personal.vague_address.text}</p>
             {statement?.formal && (
               <p style={{
