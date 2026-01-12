@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } f
 import { FaUser, FaFileAlt } from 'react-icons/fa';
 import Profile from './Profile';
 import Blog from './Blog';
+import BlogPost from './BlogPost';
 
 function Navigation() {
   const location = useLocation();
@@ -21,7 +22,7 @@ function Navigation() {
         <li>
           <Link
             to="/blog"
-            className={`nav-link ${location.pathname === '/blog' ? 'nav-link-active' : ''}`}
+            className={`nav-link ${location.pathname.startsWith('/blog') ? 'nav-link-active' : ''}`}
           >
             <FaFileAlt style={{ display: 'inline', marginRight: '0.5rem' }} />
             Blog
@@ -42,6 +43,7 @@ function App() {
             <Route path="/" element={<Navigate to="/profile" replace />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
         </main>
       </div>

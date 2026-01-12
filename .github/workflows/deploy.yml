@@ -46,6 +46,22 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.PAT_FOR_PRIVATE_REPO }}
 
+      - name: Fetch latest blog data
+        run: |
+          echo "Fetching latest release from blog-posts..."
+
+          # Download latest blog.json from blog-posts repo
+          gh release download \
+            --repo benhuckvale/blog-posts \
+            --pattern 'blog.json' \
+            --dir public/ \
+            --clobber
+
+          echo "✓ Downloaded blog.json"
+          ls -lh public/
+        env:
+          GH_TOKEN: ${{ secrets.PAT_FOR_PRIVATE_REPO }}
+
       - name: Build website
         run: npm run build
         env:
@@ -98,6 +114,19 @@ jobs:
             --dir public/ \
             --clobber
           echo "✓ Downloaded profile.json and portrait.jpeg"
+          ls -lh public/
+        env:
+          GH_TOKEN: ${{ secrets.PAT_FOR_PRIVATE_REPO }}
+
+      - name: Fetch latest blog data
+        run: |
+          echo "Fetching latest release from blog-posts..."
+          gh release download \
+            --repo benhuckvale/blog-posts \
+            --pattern 'blog.json' \
+            --dir public/ \
+            --clobber
+          echo "✓ Downloaded blog.json"
           ls -lh public/
         env:
           GH_TOKEN: ${{ secrets.PAT_FOR_PRIVATE_REPO }}
