@@ -60,7 +60,7 @@ jobs:
           echo "✓ Downloaded blog.json"
           ls -lh public/
         env:
-          GH_TOKEN: ${{ secrets.PAT_FOR_PRIVATE_REPO }}
+          GH_TOKEN: ${{ secrets.PAT_FOR_BLOG_POSTS }}
 
       - name: Build website
         run: npm run build
@@ -129,7 +129,7 @@ jobs:
           echo "✓ Downloaded blog.json"
           ls -lh public/
         env:
-          GH_TOKEN: ${{ secrets.PAT_FOR_PRIVATE_REPO }}
+          GH_TOKEN: ${{ secrets.PAT_FOR_BLOG_POSTS }}
 
       - name: Build website for production
         run: npm run build
