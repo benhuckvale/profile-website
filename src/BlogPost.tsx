@@ -72,7 +72,7 @@ const BlogPost: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto p-6 max-w-4xl">
+      <div className="max-w-4xl ml-8 p-6">
         <div className="bg-dark-blue rounded-lg shadow-lg border border-light-blue p-8">
           <p className="text-light-slate">Loading post...</p>
         </div>
@@ -82,7 +82,7 @@ const BlogPost: React.FC = () => {
 
   if (!post) {
     return (
-      <div className="container mx-auto p-6 max-w-4xl">
+      <div className="max-w-4xl ml-8 p-6">
         <div className="bg-dark-blue rounded-lg shadow-lg border border-light-blue p-8">
           <h1 className="font-sans text-2xl font-bold text-light-slate mb-4">Post Not Found</h1>
           <p className="text-light-slate mb-4">The blog post you're looking for doesn't exist.</p>
@@ -100,7 +100,7 @@ const BlogPost: React.FC = () => {
 
   if (post.draft) {
     return (
-      <div className="container mx-auto p-6 max-w-4xl">
+      <div className="max-w-4xl ml-8 p-6">
         <div className="bg-dark-blue rounded-lg shadow-lg border border-light-blue p-8">
           <h1 className="font-sans text-2xl font-bold text-light-slate mb-4">Draft Post</h1>
           <p className="text-light-slate mb-4">This post is still in draft and not available for viewing.</p>
@@ -117,14 +117,14 @@ const BlogPost: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-6 max-w-4xl">
+    <div className="max-w-4xl ml-8 p-6">
       {/* Back Button */}
       <button
         onClick={() => navigate('/blog')}
         className="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-semibold transition-colors mb-6"
       >
         <FaArrowLeft />
-        Back to Blog
+        Back
       </button>
 
       {/* Blog Post Content */}
@@ -210,7 +210,7 @@ const BlogPost: React.FC = () => {
         className="inline-flex items-center gap-2 text-accent hover:text-accent/80 font-semibold transition-colors mt-6"
       >
         <FaArrowLeft />
-        Back to Blog
+        Back
       </button>
     </div>
   );

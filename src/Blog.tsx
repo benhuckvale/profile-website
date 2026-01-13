@@ -191,14 +191,16 @@ const Blog: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="p-6 bg-dark-blue rounded-lg shadow-lg border border-light-blue text-light-slate">
-        <p>Loading blog posts...</p>
+      <div className="max-w-7xl ml-8 p-6">
+        <div className="bg-dark-blue rounded-lg shadow-lg border border-light-blue text-light-slate p-8">
+          <p>Loading blog posts...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto p-6 max-w-7xl">
+    <div className="max-w-7xl ml-8 p-6">
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Sidebar with Calendar Navigation */}
         <aside className="lg:col-span-1">
