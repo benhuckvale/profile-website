@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { FaCalendar, FaTag, FaClock, FaCube, FaFeatherAlt } from 'react-icons/fa';
-import demoBlogData from './blog.json';
+import demoBlogDataRaw from './blog.json';
 
 const DifficultyIcon: React.FC<{ difficulty?: 'hard' | 'soft'; className?: string }> = ({ difficulty, className = '' }) => {
   if (!difficulty) return null;
@@ -32,6 +32,8 @@ interface BlogData {
     version: string;
   };
 }
+
+const demoBlogData = demoBlogDataRaw as BlogData;
 
 const Blog: React.FC = () => {
   const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');

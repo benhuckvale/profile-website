@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FaClock, FaTag, FaArrowLeft, FaUser, FaCube, FaFeatherAlt } from 'react-icons/fa';
-import demoBlogData from './blog.json';
+import demoBlogDataRaw from './blog.json';
 
 const DifficultyIcon: React.FC<{ difficulty?: 'hard' | 'soft'; className?: string }> = ({ difficulty, className = '' }) => {
   if (!difficulty) return null;
@@ -34,6 +34,8 @@ interface BlogData {
     version: string;
   };
 }
+
+const demoBlogData = demoBlogDataRaw as BlogData;
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
