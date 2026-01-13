@@ -158,7 +158,7 @@ const BlogPost: React.FC = () => {
             {post.tags.length > 0 && (
               <>
                 <span>•</span>
-                {post.tags.map((tag, index) => (
+                {post.tags.map((tag) => (
                   <React.Fragment key={tag}>
                     <Link
                       to={`/blog?tag=${tag}`}
