@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "slug": "example-blog-post",
+      "title": "Example Blog Post",
+      "date": "2025-01-01",
+      "tags": ["example", "demo"],
+      "excerpt": "This is a placeholder blog post for development and fallback purposes.",
+      "featured_image": null,
+      "content_html": "<p>This is an example blog post. In production, real blog posts will be loaded from the blog-posts repository.</p>\n<p>This fallback data is used during development and when the production blog data cannot be fetched.</p>\n<h2>Features</h2>\n<ul>\n<li>Markdown to HTML conversion</li>\n<li>Tag filtering</li>\n<li>Calendar navigation</li>\n<li>Difficulty indicators</li>\n</ul>",
+      "content_raw": "This is an example blog post. In production, real blog posts will be loaded from the blog-posts repository.\n\nThis fallback data is used during development and when the production blog data cannot be fetched.\n\n## Features\n\n- Markdown to HTML conversion\n- Tag filtering\n- Calendar navigation\n- Difficulty indicators",
+      "draft": false,
+      "author": "Jane Doe",
+      "difficulty": "soft"
+    }
+  ],
+  "metadata": {
+    "total_posts": 1,
+    "generated_at": "2025-01-01T00:00:00.000000",
+    "version": "1.0.0"
+  }
+}
