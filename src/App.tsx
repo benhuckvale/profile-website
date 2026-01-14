@@ -3,6 +3,7 @@ import { FaUser, FaFileAlt } from 'react-icons/fa';
 import Profile from './Profile';
 import Blog from './Blog';
 import BlogPost from './BlogPost';
+import Footer from './components/Footer';
 
 function Navigation() {
   const location = useLocation();
@@ -36,9 +37,9 @@ function Navigation() {
 function App() {
   return (
     <Router basename={import.meta.env.BASE_URL}>
-      <div className="min-h-screen">
+      <div className="min-h-screen flex flex-col">
         <Navigation />
-        <main>
+        <main className="flex-1">
           <Routes>
             <Route path="/" element={<Navigate to="/profile" replace />} />
             <Route path="/profile" element={<Profile />} />
@@ -46,6 +47,7 @@ function App() {
             <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );
