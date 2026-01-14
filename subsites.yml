@@ -1,0 +1,22 @@
+# Subsites to integrate with profile-website deployment
+#
+# Each subsite is fetched from a GitHub release and extracted to the specified path.
+# The subsites are deployed alongside the main site.
+#
+# Example configuration:
+#
+# subsites:
+#   - path: team-agentification-journey
+#     owner: benhuckvale
+#     repo: infographic-journey
+#     artifact_pattern: team_agentification_journey.zip
+#     token_env: GH_TOKEN  # Optional: GitHub token env var name
+#     description: Team Agentification Journey infographic
+
+subsites:
+  - path: team-agentification-journey
+    owner: benhuckvale
+    repo: infographic-journey
+    artifact_pattern: team_agentification_journey.zip
+    token_env: GH_TOKEN
+    description: Team Agentification Journey infographic

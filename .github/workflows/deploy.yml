@@ -67,6 +67,11 @@ jobs:
         env:
           VITE_BASE_PATH: /profile-website
 
+      - name: Fetch and integrate subsites
+        run: npm run fetch-subsites
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -135,6 +140,11 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: /
+
+      - name: Fetch and integrate subsites
+        run: npm run fetch-subsites
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
