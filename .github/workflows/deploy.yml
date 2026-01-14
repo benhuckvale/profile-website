@@ -70,7 +70,7 @@ jobs:
       - name: Fetch and integrate subsites
         run: npm run fetch-subsites
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_FOR_INFOGRAPHIC_JOURNEY }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -144,7 +144,7 @@ jobs:
       - name: Fetch and integrate subsites
         run: npm run fetch-subsites
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_FOR_INFOGRAPHIC_JOURNEY }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
