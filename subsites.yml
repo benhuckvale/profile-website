@@ -17,6 +17,6 @@ subsites:
   - path: team-agentification-journey
     owner: benhuckvale
     repo: infographic-journey
-    artifact_pattern: team_agentification_journey.zip
-    token_env: GH_TOKEN
+    artifact_pattern: team-agentification-journey.zip
+    token_env: PAT_FOR_INFOGRAPHIC_JOURNEY
     description: Team Agentification Journey infographic
