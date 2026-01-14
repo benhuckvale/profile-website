@@ -50,15 +50,25 @@ jobs:
         run: |
           echo "Fetching latest release from blog-posts..."
 
-          # Download latest blog.json from blog-posts repo
+          # Create temp directory for download
+          mkdir -p .temp-blog
+
+          # Download blog.zip from blog-posts repo
           gh release download \
             --repo benhuckvale/blog-posts \
-            --pattern 'blog.json' \
-            --dir public/ \
+            --pattern 'blog.zip' \
+            --dir .temp-blog/ \
             --clobber
 
-          echo "✓ Downloaded blog.json"
+          # Extract to public/ (creates blog.json and images/)
+          unzip -o .temp-blog/blog.zip -d public/
+
+          # Clean up
+          rm -rf .temp-blog
+
+          echo "✓ Downloaded and extracted blog.zip"
           ls -lh public/
+          ls -lh public/images/post-images/ 2>/dev/null || echo "(no post-images directory)"
         env:
           GH_TOKEN: ${{ secrets.PAT_FOR_BLOG_POSTS }}
 
@@ -67,10 +77,8 @@ jobs:
         env:
           VITE_BASE_PATH: /profile-website
 
-      - name: Fetch and integrate subsites
-        run: npm run fetch-subsites
-        env:
-          GH_TOKEN: ${{ secrets.PAT_FOR_INFOGRAPHIC_JOURNEY }}
+      # Note: Subsites are only integrated on production deployment
+      # Staging (GitHub Pages) has a /profile-website path prefix that breaks subsite asset paths
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -126,13 +134,17 @@ jobs:
       - name: Fetch latest blog data
         run: |
           echo "Fetching latest release from blog-posts..."
+          mkdir -p .temp-blog
           gh release download \
             --repo benhuckvale/blog-posts \
-            --pattern 'blog.json' \
-            --dir public/ \
+            --pattern 'blog.zip' \
+            --dir .temp-blog/ \
             --clobber
-          echo "✓ Downloaded blog.json"
+          unzip -o .temp-blog/blog.zip -d public/
+          rm -rf .temp-blog
+          echo "✓ Downloaded and extracted blog.zip"
           ls -lh public/
+          ls -lh public/images/post-images/ 2>/dev/null || echo "(no post-images directory)"
         env:
           GH_TOKEN: ${{ secrets.PAT_FOR_BLOG_POSTS }}
 
