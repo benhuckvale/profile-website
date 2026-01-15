@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "fetch-subsites": "tsx scripts/fetch-subsites.ts"
+    "fetch-subsites": "tsx scripts/fetch-subsites.ts",
+    "check-demo-data": "node ./scripts/check-demo-data.js",
+    "setup-hooks": "node ./scripts/install-git-hooks.js"
   },
   "dependencies": {
     "react": "^19.2.0",
