@@ -71,6 +71,19 @@ const Profile: React.FC = () => {
     if (aliases && aliases[skill]) {
       searchTerms.push(...aliases[skill].map((alias: string) => alias.toLowerCase()));
     }
+    const termMatchers = searchTerms
+      .map(term => term.trim())
+      .filter(Boolean)
+      .map(term => {
+        const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const isWordLike = /^[a-z0-9_\\s]+$/i.test(term);
+        const pattern = isWordLike ? `\\b${escapedTerm}\\b` : escapedTerm;
+        return new RegExp(pattern, 'i');
+      });
+    const matchesAnyTerm = (text?: string) => {
+      if (typeof text !== 'string' || !text.trim()) return false;
+      return termMatchers.some(regex => regex.test(text));
+    };
     const usage: any[] = [];
 
     if (!work || !Array.isArray(work)) {
@@ -86,18 +99,6 @@ const Profile: React.FC = () => {
           if (!position) return;
 
           const examples: string[] = [];
-
-          // Helper to check if text matches any search term (word boundaries)
-          const matchesAnyTerm = (text: string) => {
-            const lowerText = text.toLowerCase();
-            return searchTerms.some(term => {
-              // Use word boundary regex for whole-word matching
-              // Escape special regex characters in the term
-              const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
-              return regex.test(lowerText);
-            });
-          };
 
           // Check technical examples
           if (position.detail?.technical_examples && Array.isArray(position.detail.technical_examples)) {
@@ -157,16 +158,6 @@ const Profile: React.FC = () => {
           if (!edu) return;
 
           const examples: string[] = [];
-
-          // Helper to check if text matches any search term (word boundaries)
-          const matchesAnyTerm = (text: string) => {
-            const lowerText = text.toLowerCase();
-            return searchTerms.some(term => {
-              const escapedTerm = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              const regex = new RegExp(`\\b${escapedTerm}\\b`, 'i');
-              return regex.test(lowerText);
-            });
-          };
 
           // Check formal description
           if (edu.detail?.formal && typeof edu.detail.formal === 'string') {
