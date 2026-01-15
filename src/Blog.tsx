@@ -12,13 +12,18 @@ const DifficultyIcon: React.FC<{ difficulty?: 'hard' | 'soft'; className?: strin
   return <FaFeatherAlt className={className} title="Soft topic" />;
 };
 
+type FeaturedImage = string | {
+  path: string;
+  tint?: string;
+};
+
 interface BlogPost {
   slug: string;
   title: string;
   date: string;
   tags: string[];
   excerpt: string;
-  featured_image?: string;
+  featured_image?: FeaturedImage;
   author: string;
   draft: boolean;
   difficulty?: 'hard' | 'soft';

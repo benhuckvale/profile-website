@@ -12,13 +12,18 @@ const DifficultyIcon: React.FC<{ difficulty?: 'hard' | 'soft'; className?: strin
   return <FaFeatherAlt className={className} title="Soft topic" />;
 };
 
+type FeaturedImage = string | {
+  path: string;
+  tint?: string;
+};
+
 interface BlogPost {
   slug: string;
   title: string;
   date: string;
   tags: string[];
   excerpt: string;
-  featured_image?: string;
+  featured_image?: FeaturedImage;
   content_html: string;
   content_raw: string;
   draft: boolean;
@@ -36,6 +41,17 @@ interface BlogData {
 }
 
 const demoBlogData = demoBlogDataRaw as BlogData;
+
+const resolveFeaturedImage = (featuredImage?: FeaturedImage) => {
+  if (!featuredImage) return null;
+  if (typeof featuredImage === 'string') {
+    return { path: featuredImage, tint: undefined as string | undefined };
+  }
+  return {
+    path: featuredImage.path,
+    tint: featuredImage.tint
+  };
+};
 
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -116,6 +132,8 @@ const BlogPost: React.FC = () => {
     );
   }
 
+  const featuredImage = resolveFeaturedImage(post.featured_image);
+
   return (
     <div className="max-w-4xl ml-8 p-6">
       {/* Back Button */}
@@ -177,13 +195,25 @@ const BlogPost: React.FC = () => {
         </header>
 
         {/* Featured Image */}
-        {post.featured_image && (
+        {featuredImage && (
           <div className="mb-8">
-            <img
-              src={post.featured_image}
-              alt={post.title}
-              className="w-full rounded-lg border border-light-blue/30"
-            />
+            <div className="relative rounded-lg border border-light-blue/30 overflow-hidden">
+              <img
+                src={featuredImage.path}
+                alt={post.title}
+                className="w-full h-full object-cover"
+              />
+              {featuredImage.tint && (
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    backgroundColor: featuredImage.tint,
+                    opacity: 0.8
+                  }}
+                  aria-hidden="true"
+                />
+              )}
+            </div>
           </div>
         )}
 
