@@ -157,6 +157,7 @@ jobs:
         run: npm run fetch-subsites
         env:
           GH_TOKEN: ${{ secrets.PAT_FOR_INFOGRAPHIC_JOURNEY }}
+          PAT_FOR_INFOGRAPHIC_JOURNEY: ${{ secrets.PAT_FOR_INFOGRAPHIC_JOURNEY }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
