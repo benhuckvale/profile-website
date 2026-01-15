@@ -28,6 +28,11 @@
       "url": "https://huggingface.co/jane-demo-doe"
     }
   },
+  "professions": [
+    "Software Engineer",
+    "Technical Lead",
+    "Product Engineer"
+  ],
   "professional_qualifications": [
     {
       "abbreviation": "PhD",
