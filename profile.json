@@ -27,6 +27,10 @@
     "huggingface": {
       "text": "huggingface.co/benhuckvale",
       "url": "https://huggingface.co/benhuckvale"
+    },
+    "website": {
+      "text": "ben.huckvale.dev",
+      "url": "https://ben.huckvale.dev"
     }
   },
   "professional_qualifications": [
@@ -55,7 +59,7 @@
     "beta": "03B2"
   },
   "statement": {
-    "formal": "Highly numerate and versatile software engineer, comfortable learning any new systems and technologies. Dedicated to unifying the different skills and activities of colleagues at all levels and in all disciplines to create a cohesive product and product-development process. Promoter of test-driven development, continuous integration and AI-based automation of development processes. Guided by agile philosophies and passionate about growing talent.",
+    "formal": "Experienced and versatile IT professional with a hands-on approach to leading software engineering projects. Comfortable learning any new systems and technologies as needed to solve a problem.  Dedicated to unifying the different skills and activities of colleagues at all levels and in all disciplines to create a cohesive product and product-development process. Promoter of test-driven development, continuous integration and AI-based automation of development processes.  Guided by agile philosophies, remaining adaptive to team capability and context. Passionate about ensuring opportunities for team members to develop and thrive.",
     "summary": [
       "Lead Product Engineer",
       "AI, Full-stack and Embedded development",
@@ -100,14 +104,14 @@
           "start": "Nov 2023",
           "end": "Nov 2025",
           "detail": {
-            "formal": "Responsible for delivering the firmware, backend and frontend software for hardware products that incorporate digital microfluidics technology so as to perform fully hands-off automated sample preparation and sequencing. Expanded into activities outside my titled role to support the development of other products, drive AI-transformation initiatives, and develop coding/AI skills of staff.",
+            "formal": "Responsible for delivering the firmware, backend and frontend software for hardware products that incorporate digital microfluidics technology so as to perform fully hands-off automated sample preparation and sequencing. Outside my titled role, I have supported the development of other products, driven AI-transformation initiatives, and developed coding/AI skills of staff.",
             "management_examples": [
               {
                 "Management": [
                   "AI Champion and member of Gen AI working group: reviewing proposals, exploring technologies and presenting findings, and performing hands-on technical work.",
                   "Developer enablement: Drove my own initiative to ensure all developers in company were enabled with AI coding assistants.",
-                  "Completed project involving staff and contractors to create a novel React frontend replacing a legacy Angular frontend, with backend API redesign.",
-                  "Transformed backend-only team into full-stack team, who have since been able to deliver on product needs without a separate UI team.",
+                  "Directed staff and contractors to create a novel React frontend replacing a legacy Angular frontend and to redesign the API.",
+                  "Transformed backend team into full-stack team, who have since delivered on product needs without a separate UI team.",
                   "Organised attendance to major programming conferences for my team and other software teams in the company."
                 ]
               }
@@ -119,12 +123,12 @@
               {
                 "Technical": [
                   "Built internal projects with AI-features, including automated code reviewer and large codebase vector-index with MCP.",
-                  "Built a chromium-bot using playwright allowing for robotic process automation on systems with no API access.",
-                  "Built a slick navigable company org-chart in React/D3.",
+                  "Built a chromium-bot using playwright allowing for robotic process automation on HR systems with no API access.",
                   "Built a system manifest collection program for linux-based products hardware installed as a single binary.",
                   "Completed a single-source-of-truth Python+React project that exports product mechanical design parameters to Python, C++ and Typescript, also rendering with react-three-fiber.",
                   "Ported a streaming decryption and decompression module from C++ to Python to deploy it more easily to different contexts.",
-                  "Using sqlite, built a file-indexing database, search interface, and file-browsing frontend in Plotly, enabling scientists to find and link to relevant experimental data more quickly."
+                  "Using sqlite, built a file-indexing database, search interface, and file-browsing frontend in Plotly, enabling scientists to find and link to relevant experimental data more quickly.",
+                  "Built a navigable company org-chart in React/D3."
                 ]
               }
             ],
@@ -150,13 +154,13 @@
       },
       "positions": [
         {
-          "title": "Software Engineer Expert",
+          "title": "Software Engineering Expert",
           "highlight": true,
           "start": "May 2025",
           "end": "Oct 2025",
           "detail": {
             "formal": [
-              "Independent contractor for [Mercor Intelligence](https://www.linkedin.com/company/mercor-intelligence/) providing my expertise in software engineering to improve models for a top AI lab."
+              "Independent contractor for [Mercor Intelligence](https://www.linkedin.com/company/mercor-intelligence/) providing my software engineering expertise to improve models for a top AI lab."
             ],
             "tech": {
               "languages": "C++, C, Python, Rust, Bash, Make",
@@ -197,11 +201,11 @@
           "start": "Sep 2022",
           "end": "present",
           "detail": {
-            "formal": "Our company provides outdoor education mainly to preschoolers, as well as providing a front for our contract work.",
+            "formal": "Our company provides outdoor education to children as well as providing a front for our contract work.",
             "technical_examples": [
               {
                 "Technical": [
-                  "Performed all accounting duties, corporate filing, tax compliance and payroll",
+                  "Performed accounting, corporate filing, tax compliance and payroll",
                   "Setup and maintained infrastructure for Wordpress site that takes bookings and payments."
                 ]
               }
@@ -303,7 +307,7 @@
                 "Technical": [
                   "Designed API with partner firm allowing reuse of their R&D backend within our product cutting the time to market.",
                   "Wrote the C++/C# interop code required to do this.",
-                  "Designed and implemented a C++-based http/websocket application library that provided routing and restful convenience abstractions around websocketpp.",
+                  "Made a C++-based http/websocket library to provide routing and restful convenience abstractions around websocketpp.",
                   "Designed another API and backend for a front-end developer to use to build initial customer GUI."
                 ]
               }
@@ -331,10 +335,10 @@
               {
                 "Technical": [
                   "Developed interprocess buffering system, using boost::interprocess.",
-                  "Productionised R&D software by, for example, replacing singleton/globals patterns and excessive templating, and removing obsolete or unused code.",
+                  "Productionised R&D code by, for example, carefully replacing singleton/globals patterns and excessive templating,",
                   "Developed Python-scripting API and assisted scientists in obtaining working experimental scripts.",
                   "Wrote and contributed most of the unit tests including tests for legacy code that did not have tests.",
-                  "Contributed principally to technology stack migrations - C++03 to C++11; handwritten .vsproj/Make to CMake; Subversion to Git; Jenkins to Gitlab; Cppunit to Catch tests."
+                  "Contributed principally to technology stack migrations: C++03 to C++11; handwritten .vsproj/Make to CMake; Subversion to Git; Jenkins to Gitlab; Cppunit to Catch tests."
                 ]
               }
             ],
@@ -393,7 +397,7 @@
               {
                 "Technical": [
                   "Implemented frontend using C# for model and view-model functions, and WPF XAML for views.",
-                  "Developed Scala backend functions to fulfil API used by front-end, which made queries I developed in Oracle SQL to read or update the database."
+                  "Developed Scala backend functions to fulfil API used by front-end, which made queries I developed in Oracle SQL."
                 ]
               }
             ],
@@ -426,7 +430,7 @@
               {
                 "Technical": [
                   "Used Perl, Bash and Python to automate recreation of client environments from database dumps in order to reproduce customer issues.",
-                  "Wrote and fixed Sybase SQL scripts and used a proprietary stack-based and form layout language to fix back-office and trading screen issues.",
+                  "Used Sybase SQL, a proprietary stack-based and form layout language to fix back-office and trading screen issues.",
                   "Contributed fixes to backend modules in C++ and Perl.",
                   "Worked on an on-site upgrade of heavily customised client installation in a team of two (essentially \"forward-deployed\")."
                 ]
@@ -447,6 +451,7 @@
     {
       "employer": "Fountains",
       "location": "Banbury, United Kingdom",
+      "hide": true,
       "positions": [
         {
           "title": "IT Support Analyst",
@@ -480,9 +485,14 @@
       "start": 1999,
       "end": 2003,
       "detail": {
-        "formal": "Options: Particle Physics, Theoretical Physics and Financial Market Complexity (included option-pricing theory); Vacations: Easter project with Zeus Experiment (Oxford), CERN Summer School (Geneva);",
-        "tech": "Pascal, C, C++, Java, Fortran, Latex, Linux",
-        "formal_detail": "Project: Spectroscopy of Lead; Part B options: Particle Physics, Theoretical Physics and Financial Market Complexity; Vacations: Easter project with Zeus Experiment (Oxford), CERN Summer School (Geneva); "
+        "tech": {
+          "items": "Pascal, C, C++, Java, Fortran, Latex, Linux",
+          "hide": true
+        },
+        "formal_detail": [
+          "Options: Particle Physics, Theoretical Physics and Financial Market Complexity (included option-pricing theory); Vacations: Easter project with Zeus Experiment (Oxford), CERN Summer School (Geneva);",
+          "Project: Spectroscopy of Lead; Part B options: Particle Physics, Theoretical Physics and Financial Market Complexity; Vacations: Easter project with Zeus Experiment (Oxford), CERN Summer School (Geneva); "
+        ]
       }
     },
     {
@@ -648,7 +658,7 @@
     {
       "name": "hf-chatbot-demo",
       "url": "https://github.com/benhuckvale/hf-chatbot-demo",
-      "description": "A RAG-powered customer support chatbot for ecommerce sites, hosted on Hugging Face Spaces.",
+      "description": "RAG-powered customer support chatbot built with Gradio, designed for deployment on Hugging Face Spaces",
       "technologies": [
         "Python"
       ],
@@ -657,12 +667,12 @@
         "huggingface",
         "ai"
       ],
+      "demo_url": "https://huggingface.co/spaces/benhuckvale/chatbot-demo",
       "github_stars": 0,
       "_source": "github",
-      "_github_updated_at": "2025-12-05T18:26:53+00:00",
+      "_github_updated_at": "2026-01-08T11:19:46+00:00",
       "featured": true,
       "priority": 1,
-      "demo_url": "https://huggingface.co/spaces/benhuckvale/chatbot-demo",
       "custom_description": "Interactive chatbot demo deployed on Hugging Face Spaces.\n",
       "highlights": [
         "Live interactive demo (may take 30-60s to wake from sleep)",
