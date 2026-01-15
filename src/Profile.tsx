@@ -32,17 +32,19 @@ const Profile: React.FC = () => {
 
   const { personal, professions, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
 
+  const resolveEmployerName = (job: any) => {
+    if (!job) return 'Unknown Company';
+    if (typeof job.employer === 'string') return job.employer;
+    return job.employer?.name || job.company || 'Unknown Company';
+  };
+
   // Group work entries by employer name for display
   const groupedWork = React.useMemo(() => {
     const grouped = new Map<string, any>();
 
     work.forEach((job: any) => {
       // Handle both string and object employer formats
-      const employerName =
-        typeof job.employer === 'string' ? job.employer :
-        job.employer?.name ||
-        job.company ||
-        'Unknown';
+      const employerName = resolveEmployerName(job);
 
       if (grouped.has(employerName)) {
         // Merge positions into existing employer entry (create new object)
@@ -143,7 +145,7 @@ const Profile: React.FC = () => {
 
           if (examples.length > 0) {
             usage.push({
-              company: job.employer?.name || job.company || 'Unknown Company',
+              company: resolveEmployerName(job),
               position: position.title || 'Unknown Position',
               dates: `${position.start || ''} - ${position.end || ''}`,
               examples: examples

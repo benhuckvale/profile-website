@@ -12,7 +12,10 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
   // Calculate total date range across all positions
   const earliestStart = positions[0]?.start || '';
   const latestEnd = positions[positions.length - 1]?.end || '';
-  const employerName = job.employer?.name || job.employer;
+  const employerName =
+    typeof job.employer === 'string'
+      ? job.employer
+      : job.employer?.name || job.company || 'Unknown Company';
   const employerLink = job.employer?.link;
   const location = job.location || positions[0]?.location || '';
 
