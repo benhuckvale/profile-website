@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FaClock, FaTag, FaArrowLeft, FaUser, FaCube, FaFeatherAlt } from 'react-icons/fa';
+import Giscus from '@giscus/react';
 import demoBlogDataRaw from './blog.json';
 
 const DifficultyIcon: React.FC<{ difficulty?: 'hard' | 'soft'; className?: string }> = ({ difficulty, className = '' }) => {
@@ -41,6 +42,21 @@ interface BlogData {
 }
 
 const demoBlogData = demoBlogDataRaw as BlogData;
+
+const giscusConfig = {
+  repo: import.meta.env.VITE_GISCUS_REPO ?? 'benhuckvale/comments-store',
+  repoId: import.meta.env.VITE_GISCUS_REPO_ID ?? '',
+  category: import.meta.env.VITE_GISCUS_CATEGORY ?? 'Announcements',
+  categoryId: import.meta.env.VITE_GISCUS_CATEGORY_ID ?? '',
+  mapping: import.meta.env.VITE_GISCUS_MAPPING ?? 'pathname',
+  term: import.meta.env.VITE_GISCUS_TERM ?? 'pathname',
+  strict: import.meta.env.VITE_GISCUS_STRICT ?? '0',
+  reactionsEnabled: import.meta.env.VITE_GISCUS_REACTIONS ?? '1',
+  emitMetadata: import.meta.env.VITE_GISCUS_EMIT_METADATA ?? '0',
+  inputPosition: import.meta.env.VITE_GISCUS_INPUT_POSITION ?? 'top',
+  theme: import.meta.env.VITE_GISCUS_THEME ?? 'preferred_color_scheme',
+  lang: import.meta.env.VITE_GISCUS_LANG ?? 'en'
+};
 
 const resolveFeaturedImage = (featuredImage?: FeaturedImage) => {
   if (!featuredImage) return null;
@@ -147,7 +163,7 @@ const BlogPost: React.FC = () => {
 
       {/* Blog Post Content */}
       <article className="bg-dark-blue rounded-lg shadow-lg border border-light-blue p-8">
-        {/* Header */}
+       {/* Header */}
         <header className="mb-8 border-b border-light-blue/30 pb-6">
           <h1 className="font-sans text-4xl font-bold text-light-slate mb-4">
             {post.title}
@@ -231,8 +247,29 @@ const BlogPost: React.FC = () => {
                      prose-li:text-light-slate
                      prose-blockquote:border-l-accent prose-blockquote:text-light-slate/80"
           dangerouslySetInnerHTML={{ __html: post.content_html }}
-        />
+          />
       </article>
+
+      {/* Comments */}
+      <section className="mt-10">
+        <div className="bg-dark-blue rounded-lg shadow-lg border border-light-blue/30 p-6">
+          <h2 className="text-2xl font-semibold text-light-slate mb-4">Comments</h2>
+          <Giscus
+            repo={giscusConfig.repo as `${string}/${string}`}
+            repoId={giscusConfig.repoId}
+            category={giscusConfig.category}
+            categoryId={giscusConfig.categoryId}
+            mapping={giscusConfig.mapping as 'pathname' | 'url' | 'title' | 'og:title' | 'specific' | 'number'}
+            term={giscusConfig.term}
+            strict={giscusConfig.strict as '0' | '1'}
+            reactionsEnabled={giscusConfig.reactionsEnabled as '0' | '1'}
+            emitMetadata={giscusConfig.emitMetadata as '0' | '1'}
+            inputPosition={giscusConfig.inputPosition as 'top' | 'bottom'}
+            theme={giscusConfig.theme}
+            lang={giscusConfig.lang}
+          />
+        </div>
+      </section>
 
       {/* Back Button at Bottom */}
       <button
