@@ -207,5 +207,12 @@
       "url": "https://janedoe.example.com",
       "description": "Technical blog about AI, software engineering, and career development.\nBuilt with Next.js and deployed on Vercel.\n"
     }
+  ],
+  "interests": [
+    {
+      "name": "Open Source",
+      "detail": "Contributing to open source projects in the AI/ML space.",
+      "brief": "Open source contributor"
+    }
   ]
 }

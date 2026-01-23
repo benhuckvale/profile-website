@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FaLinkedin, FaGithub, FaEnvelope, FaBriefcase, FaGraduationCap, FaTools, FaRocket, FaTimes, FaInfoCircle } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaEnvelope, FaBriefcase, FaGraduationCap, FaTools, FaRocket, FaTimes, FaInfoCircle, FaHeart } from 'react-icons/fa';
 import { SiHuggingface } from 'react-icons/si';
 import demoData from './profile.json';
 import WorkExperienceCard from './components/WorkExperienceCard';
 import EducationCard from './components/EducationCard';
 import ProjectCard from './components/ProjectCard';
+import { renderTextWithLinks } from './utils/markdownLink';
 import './Profile.css';
 
 const Profile: React.FC = () => {
@@ -30,7 +31,7 @@ const Profile: React.FC = () => {
       });
   }, [baseUrl]);
 
-  const { personal, professions, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements } = profileData;
+  const { personal, professions, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements, interests } = profileData;
 
   const resolveEmployerName = (job: any) => {
     if (!job) return 'Unknown Company';
@@ -43,21 +44,28 @@ const Profile: React.FC = () => {
     const grouped = new Map<string, any>();
 
     work.forEach((job: any) => {
+      // Skip hidden employers
+      if (job.hide) return;
+
       // Handle both string and object employer formats
       const employerName = resolveEmployerName(job);
+
+      // Filter out hidden positions
+      const visiblePositions = (job.positions || []).filter((pos: any) => !pos.hide);
+      if (visiblePositions.length === 0) return;
 
       if (grouped.has(employerName)) {
         // Merge positions into existing employer entry (create new object)
         const existing = grouped.get(employerName);
         grouped.set(employerName, {
           ...existing,
-          positions: [...existing.positions, ...(job.positions || [])]
+          positions: [...existing.positions, ...visiblePositions]
         });
       } else {
         // Create new employer entry
         grouped.set(employerName, {
           ...job,
-          positions: [...(job.positions || [])]
+          positions: [...visiblePositions]
         });
       }
     });
@@ -102,36 +110,20 @@ const Profile: React.FC = () => {
 
           const examples: string[] = [];
 
-          // Check technical examples
-          if (position.detail?.technical_examples && Array.isArray(position.detail.technical_examples)) {
-            position.detail.technical_examples.forEach((exampleGroup: any) => {
-              if (exampleGroup && typeof exampleGroup === 'object') {
-                Object.values(exampleGroup).forEach((exampleList: any) => {
-                  if (Array.isArray(exampleList)) {
-                    exampleList.forEach((example: string) => {
-                      if (typeof example === 'string' && matchesAnyTerm(example)) {
-                        examples.push(example);
-                      }
-                    });
-                  }
-                });
+          // Check impact examples
+          if (position.detail?.impact_examples && Array.isArray(position.detail.impact_examples)) {
+            position.detail.impact_examples.forEach((example: string) => {
+              if (typeof example === 'string' && matchesAnyTerm(example)) {
+                examples.push(example);
               }
             });
           }
 
-          // Check management examples
-          if (position.detail?.management_examples && Array.isArray(position.detail.management_examples)) {
-            position.detail.management_examples.forEach((exampleGroup: any) => {
-              if (exampleGroup && typeof exampleGroup === 'object') {
-                Object.values(exampleGroup).forEach((exampleList: any) => {
-                  if (Array.isArray(exampleList)) {
-                    exampleList.forEach((example: string) => {
-                      if (typeof example === 'string' && matchesAnyTerm(example)) {
-                        examples.push(example);
-                      }
-                    });
-                  }
-                });
+          // Check impact examples more
+          if (position.detail?.impact_examples_more && Array.isArray(position.detail.impact_examples_more)) {
+            position.detail.impact_examples_more.forEach((example: string) => {
+              if (typeof example === 'string' && matchesAnyTerm(example)) {
+                examples.push(example);
               }
             });
           }
@@ -459,6 +451,52 @@ const Profile: React.FC = () => {
             ))}
         </div>
       </section>
+
+      {interests && interests.length > 0 && (
+        <section className="profile-section">
+          <h2 className="section-heading">
+            <FaHeart className="heading-accent" />
+            Interests
+          </h2>
+          <div className="section-content">
+            <div className="glass-card">
+              {interests
+                .filter((interest: any) => !interest.hide)
+                .map((interest: any, index: number, arr: any[]) => (
+                  <div key={index} style={{ marginBottom: index < arr.length - 1 ? '1rem' : 0 }}>
+                    <h4 style={{ color: 'var(--color-primary-accent)', marginBottom: '0.25rem' }}>
+                      {interest.name}
+                    </h4>
+                    <div style={{ color: 'var(--color-body-text)', margin: 0 }}>
+                      {Array.isArray(interest.detail) ? (
+                        interest.detail.map((item: string, i: number) => (
+                          <p key={i} style={{ margin: i > 0 ? '0.5rem 0 0 0' : 0 }}>
+                            {renderTextWithLinks(item)}
+                          </p>
+                        ))
+                      ) : (
+                        <p style={{ margin: 0 }}>{renderTextWithLinks(interest.detail || interest.brief)}</p>
+                      )}
+                      {interest.aside && (
+                        <div style={{ fontStyle: 'italic', marginTop: '0.5rem', opacity: 0.85 }}>
+                          {Array.isArray(interest.aside) ? (
+                            interest.aside.map((item: string, i: number) => (
+                              <p key={i} style={{ margin: i > 0 ? '0.5rem 0 0 0' : 0 }}>
+                                {renderTextWithLinks(item)}
+                              </p>
+                            ))
+                          ) : (
+                            <p style={{ margin: 0 }}>{renderTextWithLinks(interest.aside)}</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Skill Detail Modal */}
       {selectedSkill && (() => {

@@ -96,43 +96,17 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
                 </div>
               )}
 
-              {position.detail?.technical_examples && position.detail.technical_examples.length > 0 && (
+              {(position.detail?.impact_examples || position.detail?.impact_examples_more) && (
                 <div style={{ marginTop: '1rem' }}>
                   <h5 style={{ color: 'var(--color-secondary-accent)', marginBottom: '0.5rem' }}>
-                    Technical Highlights:
+                    Key Achievements:
                   </h5>
                   <ul className="cyber-list">
-                    {position.detail.technical_examples.map((section: any, idx: number) => (
-                      <React.Fragment key={idx}>
-                        {Object.values(section).map((list: any, i: number) => (
-                          <React.Fragment key={i}>
-                            {list.map((item: string, j: number) => (
-                              <li key={j}>{renderTextWithLinks(item)}</li>
-                            ))}
-                          </React.Fragment>
-                        ))}
-                      </React.Fragment>
+                    {position.detail?.impact_examples?.map((example: string, idx: number) => (
+                      <li key={`impact-${idx}`}>{renderTextWithLinks(example)}</li>
                     ))}
-                  </ul>
-                </div>
-              )}
-
-              {position.detail?.management_examples && position.detail.management_examples.length > 0 && (
-                <div style={{ marginTop: '1rem' }}>
-                  <h5 style={{ color: 'var(--color-secondary-accent)', marginBottom: '0.5rem' }}>
-                    Management Highlights:
-                  </h5>
-                  <ul className="cyber-list">
-                    {position.detail.management_examples.map((section: any, idx: number) => (
-                      <React.Fragment key={idx}>
-                        {Object.values(section).map((list: any, i: number) => (
-                          <React.Fragment key={i}>
-                            {list.map((item: string, j: number) => (
-                              <li key={j}>{renderTextWithLinks(item)}</li>
-                            ))}
-                          </React.Fragment>
-                        ))}
-                      </React.Fragment>
+                    {position.detail?.impact_examples_more?.map((example: string, idx: number) => (
+                      <li key={`impact-more-${idx}`}>{renderTextWithLinks(example)}</li>
                     ))}
                   </ul>
                 </div>
