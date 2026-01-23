@@ -9,7 +9,8 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
-const outputPath = path.join(projectRoot, "public", "og-image.png");
+// Write directly into the built output so it is guaranteed to be deployed.
+const outputPath = path.join(projectRoot, "dist", "og-image.png");
 const basePath = process.env.VITE_BASE_PATH || "/";
 const basePathForLog = basePath.endsWith("/") ? basePath : `${basePath}/`;
 
@@ -175,6 +176,9 @@ async function captureScreenshot() {
 
     const publicFiles = await fs.readdir(path.join(projectRoot, "public"));
     console.log(`public/ contents: ${publicFiles.join(", ")}`);
+
+    const distFiles = await fs.readdir(path.join(projectRoot, "dist"));
+    console.log(`dist/ contents: ${distFiles.join(", ")}`);
   } finally {
     await browser.close();
   }
