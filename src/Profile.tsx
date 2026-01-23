@@ -267,7 +267,7 @@ const Profile: React.FC = () => {
                 lineHeight: '1.6',
                 color: 'var(--color-body-text)'
               }}>
-                {statement.formal}
+                {statement.impact}
               </p>
             )}
           </div>
