@@ -8,6 +8,8 @@ import ProjectCard from './components/ProjectCard';
 import { renderTextWithLinks } from './utils/markdownLink';
 import './Profile.css';
 
+const SEO_DEFAULT_DESCRIPTION = 'Professional profile showcasing career history, projects, skills, and blog';
+
 const Profile: React.FC = () => {
   const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash
   const [profileData, setProfileData] = useState(demoData);
@@ -31,7 +33,36 @@ const Profile: React.FC = () => {
       });
   }, [baseUrl]);
 
-  const { personal, professions, professional_qualifications, statement, work, education, skills, skill_aliases, projects, unicode_replacements, interests } = profileData;
+  const { personal, professions, professional_qualifications, statement, work, education, skills, skill_aliases, projects: rawProjects, unicode_replacements, interests } = profileData;
+  const projects = Array.isArray(rawProjects) ? rawProjects : [];
+
+  useEffect(() => {
+    const nameData = personal?.name;
+    if (!nameData) return;
+
+    const shortFirst = nameData.short_first || nameData.first || '';
+    const last = nameData.last || '';
+    const displayName = [shortFirst, last].filter(Boolean).join(' ').trim();
+    const pageTitle = displayName ? `${displayName} · Personal Profile` : 'Personal Profile';
+    const description = displayName
+      ? `${displayName}'s professional profile showcasing career history, projects, skills, and blog`
+      : SEO_DEFAULT_DESCRIPTION;
+
+    document.title = pageTitle;
+
+    const setMetaContent = (selector: string, value: string) => {
+      const element = document.querySelector(selector) as HTMLMetaElement | null;
+      if (element) {
+        element.setAttribute('content', value);
+      }
+    };
+
+    setMetaContent('meta[name="description"]', description);
+    setMetaContent('meta[property="og:title"]', pageTitle);
+    setMetaContent('meta[property="og:description"]', description);
+    setMetaContent('meta[name="twitter:title"]', pageTitle);
+    setMetaContent('meta[name="twitter:description"]', description);
+  }, [personal]);
 
   const resolveEmployerName = (job: any) => {
     if (!job) return 'Unknown Company';
@@ -260,7 +291,7 @@ const Profile: React.FC = () => {
               </p>
             )}
             <p className="location">{personal.vague_address.text}</p>
-            {statement?.formal && (
+            {statement?.impact && (
               <p style={{
                 marginTop: '1rem',
                 fontSize: '0.95rem',

@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "fetch-subsites": "tsx scripts/fetch-subsites.ts",
     "check-demo-data": "node ./scripts/check-demo-data.js",
-    "setup-hooks": "node ./scripts/install-git-hooks.js"
+    "setup-hooks": "node ./scripts/install-git-hooks.js",
+    "generate:thumbnail": "node scripts/generate-thumbnail.mjs"
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "playwright": "^1.50.0",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.5",

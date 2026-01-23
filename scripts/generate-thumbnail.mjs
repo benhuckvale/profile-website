@@ -1,0 +1,208 @@
+#!/usr/bin/env node
+
+import { chromium } from "playwright";
+import { spawn } from "child_process";
+import fs from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, "..");
+const outputPath = path.join(projectRoot, "public", "og-image.png");
+
+const PORT = process.env.PORT || "4173";
+const HOST = "127.0.0.1";
+const ORIGIN = `http://${HOST}:${PORT}`;
+
+// Standard Open Graph image dimensions
+const VIEWPORT_WIDTH = 1200;
+const VIEWPORT_HEIGHT = 630;
+
+async function isServerUp() {
+  try {
+    const response = await fetch(ORIGIN, { method: "HEAD" });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
+function startPreviewServer() {
+  const env = { ...process.env, PORT };
+
+  const child = spawn(
+    "npm",
+    ["run", "preview", "--", "--host", HOST, "--port", PORT, "--strictPort"],
+    {
+      cwd: projectRoot,
+      env,
+      stdio: ["ignore", "pipe", "pipe"],
+      detached: process.platform !== "win32",
+    }
+  );
+
+  child.stdout.on("data", (chunk) => {
+    console.log(`[preview] ${chunk.toString().trim()}`);
+  });
+  child.stderr.on("data", (chunk) => {
+    console.error(`[preview] ${chunk.toString().trim()}`);
+  });
+
+  return child;
+}
+
+async function waitForServer(proc) {
+  const timeoutMs = 60000;
+  const intervalMs = 300;
+  const start = Date.now();
+
+  while (Date.now() - start < timeoutMs) {
+    if (proc.exitCode !== null) {
+      throw new Error(`Preview server exited early with code ${proc.exitCode}`);
+    }
+
+    if (await isServerUp()) {
+      return;
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, intervalMs));
+  }
+
+  throw new Error("Timed out waiting for preview server to start");
+}
+
+async function killServer(proc) {
+  if (!proc) return;
+
+  const waitForExit = new Promise((resolve) => {
+    const timeout = setTimeout(() => {
+      if (!proc.killed) {
+        try {
+          if (process.platform !== "win32") {
+            process.kill(-proc.pid, "SIGKILL");
+          } else {
+            proc.kill("SIGKILL");
+          }
+        } catch {
+          // ignore
+        }
+      }
+    }, 5000);
+
+    proc.once("exit", () => {
+      clearTimeout(timeout);
+      resolve();
+    });
+  });
+
+  try {
+    if (process.platform !== "win32") {
+      process.kill(-proc.pid, "SIGINT");
+    } else {
+      proc.kill("SIGINT");
+    }
+  } catch {
+    // already gone
+  }
+
+  await waitForExit;
+}
+
+async function runCommand(command, args) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(command, args, {
+      cwd: projectRoot,
+      stdio: "inherit",
+    });
+
+    child.once("error", reject);
+    child.once("exit", (code) => {
+      if (code === 0) {
+        resolve();
+        return;
+      }
+      reject(new Error(`${command} ${args.join(" ")} exited with code ${code}`));
+    });
+  });
+}
+
+async function captureScreenshot() {
+  console.log(`Launching browser with viewport ${VIEWPORT_WIDTH}x${VIEWPORT_HEIGHT}...`);
+
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext({
+    viewport: { width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT },
+  });
+  const page = await context.newPage();
+
+  page.on("console", (message) => {
+    if (message.type() === "error") {
+      console.error(`[client console error] ${message.text()}`);
+    }
+  });
+
+  try {
+    console.log(`Navigating to ${ORIGIN}...`);
+    await page.goto(ORIGIN, { waitUntil: "networkidle" });
+
+    // Wait for the main content to render
+    await page.waitForSelector("#root", { timeout: 10000 });
+
+    // Wait for fonts and images to load, plus animations to settle
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(1500);
+
+    // Ensure output directory exists
+    await fs.mkdir(path.dirname(outputPath), { recursive: true });
+
+    // Take full page screenshot at the viewport size
+    await page.screenshot({
+      path: outputPath,
+      type: "png",
+      clip: { x: 0, y: 0, width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT },
+    });
+
+    console.log(`Screenshot saved to ${path.relative(projectRoot, outputPath)}`);
+  } finally {
+    await browser.close();
+  }
+}
+
+async function main() {
+  console.log("Building project...");
+  await runCommand("npm", ["run", "build"]);
+
+  const serverAlreadyRunning = await isServerUp();
+  let serverProcess;
+
+  if (serverAlreadyRunning) {
+    console.log("Preview server already running");
+  } else {
+    console.log("Starting preview server...");
+    serverProcess = startPreviewServer();
+    try {
+      await waitForServer(serverProcess);
+      console.log("Preview server ready");
+    } catch (error) {
+      await killServer(serverProcess);
+      throw error;
+    }
+  }
+
+  try {
+    await captureScreenshot();
+  } finally {
+    if (serverProcess) {
+      console.log("Shutting down preview server...");
+      await killServer(serverProcess);
+    }
+  }
+
+  console.log("Done!");
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
