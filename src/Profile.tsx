@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaLinkedin, FaGithub, FaEnvelope, FaBriefcase, FaGraduationCap, FaTools, FaRocket, FaTimes, FaInfoCircle, FaHeart } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaBriefcase, FaGraduationCap, FaTools, FaRocket, FaTimes, FaInfoCircle, FaHeart } from 'react-icons/fa';
 import { SiHuggingface } from 'react-icons/si';
 import demoData from './profile.json';
 import WorkExperienceCard from './components/WorkExperienceCard';
@@ -333,10 +333,6 @@ const Profile: React.FC = () => {
               Hugging Face
             </a>
           )}
-          <a href={`mailto:${personal.email}`} className="profile-link">
-            <FaEnvelope size={20} />
-            Email
-          </a>
         </div>
 
         <div className="circuit-border-top"></div>
