@@ -80,6 +80,25 @@ jobs:
         env:
           VITE_BASE_PATH: /profile-website
 
+      - name: List build output (staging)
+        run: |
+          echo "Files that will be deployed (staging build):"
+          find dist -type f | sort
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Staging build file list" >> $GITHUB_STEP_SUMMARY
+          find dist -type f | sort >> $GITHUB_STEP_SUMMARY
+
+      - name: Assert og-image exists (staging)
+        run: |
+          test -f dist/og-image.png
+          ls -lh dist/og-image.png
+
+      - name: Upload dist artifact (staging)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-staging
+          path: dist
+
       # Note: Subsites are only integrated on production deployment
       # Staging (GitHub Pages) has a /profile-website path prefix that breaks subsite asset paths
 
@@ -158,6 +177,25 @@ jobs:
         run: npm run generate:thumbnail
         env:
           VITE_BASE_PATH: /
+
+      - name: List build output (production)
+        run: |
+          echo "Files that will be deployed (production build):"
+          find dist -type f | sort
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Production build file list" >> $GITHUB_STEP_SUMMARY
+          find dist -type f | sort >> $GITHUB_STEP_SUMMARY
+
+      - name: Assert og-image exists (production)
+        run: |
+          test -f dist/og-image.png
+          ls -lh dist/og-image.png
+
+      - name: Upload dist artifact (production)
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-production
+          path: dist
 
       - name: Fetch and integrate subsites
         run: npm run fetch-subsites
