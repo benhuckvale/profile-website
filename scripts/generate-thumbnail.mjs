@@ -10,6 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, "..");
 const outputPath = path.join(projectRoot, "public", "og-image.png");
+const basePath = process.env.VITE_BASE_PATH || "/";
+const basePathForLog = basePath.endsWith("/") ? basePath : `${basePath}/`;
 
 const PORT = process.env.PORT || "4173";
 const HOST = "127.0.0.1";
@@ -164,13 +166,24 @@ async function captureScreenshot() {
     });
 
     console.log(`Screenshot saved to ${path.relative(projectRoot, outputPath)}`);
+
+    const stats = await fs.stat(outputPath);
+    const sizeKb = (stats.size / 1024).toFixed(1);
+    console.log(
+      `og-image details: size=${sizeKb}KB, mtime=${stats.mtime.toISOString()}, deploy path=${path.relative(projectRoot, outputPath)}`
+    );
+
+    const publicFiles = await fs.readdir(path.join(projectRoot, "public"));
+    console.log(`public/ contents: ${publicFiles.join(", ")}`);
   } finally {
     await browser.close();
   }
 }
 
 async function main() {
-  console.log("Building project...");
+  console.log(
+    `Building project with VITE_BASE_PATH='${basePath}' (og-image will be served from '${basePathForLog}og-image.png')...`
+  );
   await runCommand("npm", ["run", "build"]);
 
   const serverAlreadyRunning = await isServerUp();
