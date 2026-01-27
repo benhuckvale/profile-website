@@ -9,9 +9,44 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const positions = job.positions || [];
 
-  // Calculate total date range across all positions
-  const earliestStart = positions[0]?.start || '';
-  const latestEnd = positions[positions.length - 1]?.end || '';
+  // Calculate total date range across all positions (positions may be unsorted)
+  const parseDateValue = (label?: string | null) => {
+    if (!label) return null;
+    if (/present/i.test(label)) return Number.POSITIVE_INFINITY; // Treat "Present" as the latest possible
+    const parsed = Date.parse(`${label} 1`); // Add a day to help Date.parse recognise month/year strings
+    return Number.isNaN(parsed) ? null : parsed;
+  };
+
+  const positionsWithDates = positions.map((pos: any) => ({
+    ...pos,
+    startValue: parseDateValue(pos.start),
+    endValue: parseDateValue(pos.end)
+  }));
+
+  const earliestStartPosition = positionsWithDates.reduce((earliest: any, pos: any) => {
+    if (pos.startValue === null) return earliest;
+    if (!earliest || (earliest.startValue ?? Number.POSITIVE_INFINITY) > pos.startValue) {
+      return pos;
+    }
+    return earliest;
+  }, null);
+
+  const latestEndPosition = positionsWithDates.reduce((latest: any, pos: any) => {
+    // Prefer end date; fall back to start date if end is missing
+    const candidateValue = pos.endValue ?? pos.startValue;
+    if (candidateValue === null) return latest;
+    const latestValue = latest?.endValue ?? latest?.startValue ?? Number.NEGATIVE_INFINITY;
+    if (!latest || candidateValue > latestValue) {
+      return {
+        ...pos,
+        endValue: pos.endValue ?? pos.startValue
+      };
+    }
+    return latest;
+  }, null);
+
+  const earliestStart = earliestStartPosition?.start || '';
+  const latestEnd = latestEndPosition?.end || latestEndPosition?.start || '';
   const employerName =
     typeof job.employer === 'string'
       ? job.employer
