@@ -9,7 +9,8 @@
       // This script takes the current URL and converts the path and query
       // string into a hash URL that the SPA can parse and use.
 
-      var pathSegmentsToKeep = 0;
+      // Auto-detect: use 1 for GitHub Pages project sites, 0 for root domains
+      var pathSegmentsToKeep = window.location.hostname === 'benhuckvale.github.io' ? 1 : 0;
 
       var l = window.location;
       l.replace(
