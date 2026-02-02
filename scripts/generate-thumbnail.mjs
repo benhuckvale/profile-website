@@ -146,8 +146,9 @@ async function captureScreenshot() {
   });
 
   try {
-    console.log(`Navigating to ${ORIGIN}...`);
-    await page.goto(ORIGIN, { waitUntil: "networkidle" });
+    const targetUrl = `${ORIGIN}${basePath}`;
+    console.log(`Navigating to ${targetUrl}...`);
+    await page.goto(targetUrl, { waitUntil: "networkidle" });
 
     // Wait for the main content to render
     await page.waitForSelector("#root", { timeout: 10000 });
