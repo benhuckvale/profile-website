@@ -13,7 +13,8 @@ const DifficultyIcon: React.FC<{ difficulty?: 'hard' | 'soft'; className?: strin
 };
 
 type FeaturedImage = string | {
-  path: string;
+  path?: string;
+  url?: string;
   tint?: string;
 };
 

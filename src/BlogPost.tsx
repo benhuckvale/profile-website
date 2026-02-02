@@ -14,7 +14,8 @@ const DifficultyIcon: React.FC<{ difficulty?: 'hard' | 'soft'; className?: strin
 };
 
 type FeaturedImage = string | {
-  path: string;
+  path?: string;
+  url?: string;
   tint?: string;
 };
 
@@ -64,7 +65,7 @@ const resolveFeaturedImage = (featuredImage?: FeaturedImage) => {
     return { path: featuredImage, tint: undefined as string | undefined };
   }
   return {
-    path: featuredImage.path,
+    path: featuredImage.url || featuredImage.path || '',
     tint: featuredImage.tint
   };
 };
@@ -242,7 +243,7 @@ const BlogPost: React.FC = () => {
                      prose-a:text-blue-400 prose-a:underline hover:prose-a:text-blue-300
                      prose-strong:text-light-slate prose-strong:font-semibold
                      prose-code:text-accent prose-code:bg-light-blue/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-                     prose-pre:bg-light-blue/10 prose-pre:border prose-pre:border-light-blue/30
+                     prose-pre:bg-light-blue/10 prose-pre:border prose-pre:border-light-blue/30 prose-pre:whitespace-pre-wrap prose-pre:overflow-x-auto
                      prose-ul:text-light-slate prose-ul:my-4 prose-ol:text-light-slate prose-ol:my-4
                      prose-li:text-light-slate
                      prose-blockquote:border-l-accent prose-blockquote:text-light-slate/80"
