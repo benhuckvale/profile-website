@@ -12,8 +12,8 @@ const SEO_DEFAULT_DESCRIPTION = 'Professional profile showcasing career history,
 
 const Profile: React.FC = () => {
   const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, ''); // Remove trailing slash
-  const [profileData, setProfileData] = useState(demoData);
-  const [_isLoading, setIsLoading] = useState(true);
+  const [profileData, setProfileData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
   const [showSkillTooltip, setShowSkillTooltip] = useState(false);
   const [portraitError, setPortraitError] = useState(false);
@@ -32,6 +32,25 @@ const Profile: React.FC = () => {
         setIsLoading(false);
       });
   }, [baseUrl]);
+
+  // Don't render content until data is loaded
+  if (isLoading || !profileData) {
+    return (
+      <div className="profile-container" style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '60vh'
+      }}>
+        <div style={{
+          color: 'var(--color-primary-accent)',
+          fontSize: '1.2rem'
+        }}>
+          Loading...
+        </div>
+      </div>
+    );
+  }
 
   const { personal, professions, professional_qualifications, statement, work, education, skills, skill_aliases, projects: rawProjects, unicode_replacements, interests } = profileData;
   const projects = Array.isArray(rawProjects) ? rawProjects : [];
