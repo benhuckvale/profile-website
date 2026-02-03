@@ -45,29 +45,25 @@ const Profile: React.FC = () => {
     };
   }, [baseUrl]);
 
-  // Don't render content until data is loaded
-  if (isLoading || !profileData) {
-    return (
-      <div className="profile-container" style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '60vh'
-      }}>
-        <div style={{
-          color: 'var(--color-primary-accent)',
-          fontSize: '1.2rem'
-        }}>
-          Loading...
-        </div>
-      </div>
-    );
-  }
-
-  const { personal, professions, professional_qualifications, statement, work, education, skills, skill_aliases, projects: rawProjects, unicode_replacements, interests } = profileData;
+  // Extract data (use empty defaults if still loading)
+  const {
+    personal,
+    professions,
+    professional_qualifications,
+    statement,
+    work = [],
+    education = [],
+    skills = [],
+    skill_aliases,
+    projects: rawProjects,
+    unicode_replacements,
+    interests = []
+  } = profileData || {};
   const projects = Array.isArray(rawProjects) ? rawProjects : [];
 
+  // Update page metadata when profile data loads
   useEffect(() => {
+    if (!profileData) return; // Skip if no data yet
     const nameData = personal?.name;
     if (!nameData) return;
 
@@ -296,6 +292,25 @@ const Profile: React.FC = () => {
       </p>
     );
   };
+
+  // Show loading state if data hasn't loaded yet
+  if (isLoading || !profileData) {
+    return (
+      <div className="profile-container" style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '60vh'
+      }}>
+        <div style={{
+          color: 'var(--color-primary-accent)',
+          fontSize: '1.2rem'
+        }}>
+          Loading...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="profile-container">
