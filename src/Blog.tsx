@@ -47,33 +47,25 @@ const Blog: React.FC = () => {
   const [blogData, setBlogData] = useState<BlogData>(demoBlogData);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Initialize filter state from URL params, falling back to localStorage
+  // Initialize filter state from URL params only (no localStorage persistence)
   const [selectedYear, setSelectedYear] = useState<number | null>(() => {
     const urlYear = searchParams.get('year');
-    if (urlYear) return parseInt(urlYear, 10);
-    const saved = localStorage.getItem('blogSelectedYear');
-    return saved ? JSON.parse(saved) : null;
+    return urlYear ? parseInt(urlYear, 10) : null;
   });
   const [selectedMonth, setSelectedMonth] = useState<number | null>(() => {
     const urlMonth = searchParams.get('month');
-    if (urlMonth) return parseInt(urlMonth, 10);
-    const saved = localStorage.getItem('blogSelectedMonth');
-    return saved ? JSON.parse(saved) : null;
+    return urlMonth ? parseInt(urlMonth, 10) : null;
   });
   const [selectedTag, setSelectedTag] = useState<string | null>(() => {
     const urlTag = searchParams.get('tag');
-    if (urlTag) return urlTag;
-    const saved = localStorage.getItem('blogSelectedTag');
-    return saved ? JSON.parse(saved) : null;
+    return urlTag || null;
   });
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(() => {
     const urlDifficulty = searchParams.get('difficulty');
-    if (urlDifficulty) return urlDifficulty;
-    const saved = localStorage.getItem('blogSelectedDifficulty');
-    return saved ? JSON.parse(saved) : null;
+    return urlDifficulty || null;
   });
 
-  // Update URL params and localStorage when filters change
+  // Update URL params when filters change (no localStorage)
   useEffect(() => {
     const params = new URLSearchParams();
     if (selectedYear !== null) params.set('year', selectedYear.toString());
@@ -82,29 +74,8 @@ const Blog: React.FC = () => {
     if (selectedDifficulty !== null) params.set('difficulty', selectedDifficulty);
 
     setSearchParams(params, { replace: true });
-
-    localStorage.setItem('blogSelectedYear', JSON.stringify(selectedYear));
-    localStorage.setItem('blogSelectedMonth', JSON.stringify(selectedMonth));
-    localStorage.setItem('blogSelectedTag', JSON.stringify(selectedTag));
-    localStorage.setItem('blogSelectedDifficulty', JSON.stringify(selectedDifficulty));
   }, [selectedYear, selectedMonth, selectedTag, selectedDifficulty, setSearchParams]);
 
-  // Restore scroll position
-  useEffect(() => {
-    const savedScrollY = localStorage.getItem('blogScrollY');
-    if (savedScrollY) {
-      window.scrollTo(0, parseInt(savedScrollY, 10));
-    }
-  }, []);
-
-  // Save scroll position before navigating away
-  useEffect(() => {
-    const handleScroll = () => {
-      localStorage.setItem('blogScrollY', window.scrollY.toString());
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Fetch production data, fallback to demo data
   useEffect(() => {
