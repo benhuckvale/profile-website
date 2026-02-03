@@ -20,17 +20,29 @@ const Profile: React.FC = () => {
 
   // Fetch production data, fallback to demo data
   useEffect(() => {
-    fetch(`${baseUrl}/profile.json`)
-      .then(res => res.json())
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+
+    fetch(`${baseUrl}/profile.json`, { signal: controller.signal })
+      .then(res => {
+        clearTimeout(timeoutId);
+        return res.json();
+      })
       .then(data => {
         setProfileData(data);
         setIsLoading(false);
       })
       .catch(err => {
+        clearTimeout(timeoutId);
         console.log('Using demo data (production data not available):', err);
         setProfileData(demoData);
         setIsLoading(false);
       });
+
+    return () => {
+      clearTimeout(timeoutId);
+      controller.abort();
+    };
   }, [baseUrl]);
 
   // Don't render content until data is loaded

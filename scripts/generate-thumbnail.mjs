@@ -140,18 +140,34 @@ async function captureScreenshot() {
   const page = await context.newPage();
 
   page.on("console", (message) => {
-    if (message.type() === "error") {
-      console.error(`[client console error] ${message.text()}`);
+    const type = message.type();
+    if (type === "error" || type === "warning") {
+      console.log(`[client ${type}] ${message.text()}`);
+    }
+  });
+
+  page.on("requestfailed", (request) => {
+    console.error(`[request failed] ${request.url()} - ${request.failure().errorText}`);
+  });
+
+  page.on("response", (response) => {
+    if (response.status() >= 400) {
+      console.error(`[${response.status()}] ${response.url()}`);
     }
   });
 
   try {
-    const targetUrl = `${ORIGIN}${basePath}`;
+    // Ensure base path ends with slash for navigation
+    const basePathWithSlash = basePath.endsWith('/') ? basePath : `${basePath}/`;
+    const targetUrl = `${ORIGIN}${basePathWithSlash}`;
     console.log(`Navigating to ${targetUrl}...`);
     await page.goto(targetUrl, { waitUntil: "networkidle" });
 
-    // Wait for the main content to render
-    await page.waitForSelector("#root", { timeout: 10000 });
+    // Wait for the main content to render (accept loading state or actual content)
+    await page.waitForSelector("#root", { state: "attached", timeout: 10000 });
+
+    // Give the page a moment to load data or show loading state
+    await page.waitForTimeout(2000);
 
     // Wait for fonts and images to load, plus animations to settle
     await page.waitForLoadState("networkidle");
