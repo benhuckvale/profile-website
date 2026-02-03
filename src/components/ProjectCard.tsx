@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub, FaStar, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub, FaStar, FaExternalLinkAlt, FaBook, FaCube } from 'react-icons/fa';
 import { renderTextWithLinks } from '../utils/markdownLink';
 
 interface ProjectCardProps {
@@ -60,6 +60,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           >
             <FaExternalLinkAlt size={14} />
             Live Demo
+          </a>
+        )}
+        {(project.pypi_package_url || project.pypi_url) && (
+          <a
+            href={project.pypi_package_url || project.pypi_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="profile-link"
+            style={{ fontSize: '0.9rem' }}
+          >
+            <FaCube size={14} />
+            PyPI Package
+          </a>
+        )}
+        {project.docs_url && (
+          <a
+            href={project.docs_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="profile-link"
+            style={{ fontSize: '0.9rem' }}
+          >
+            <FaBook size={14} />
+            Documentation
           </a>
         )}
       </div>

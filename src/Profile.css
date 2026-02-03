@@ -72,6 +72,19 @@
   gap: 0.75rem;
 }
 
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Card styles (legacy support - prefer glass-card) */
 .card {
   background: rgba(6, 13, 27, 0.7);

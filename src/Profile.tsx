@@ -491,7 +491,7 @@ const Profile: React.FC = () => {
             <FaRocket className="heading-accent" />
             Projects
           </h2>
-          <div className="section-content">
+          <div className="projects-grid">
             {projects.map((project: any, index: number) => (
               <ProjectCard key={index} project={project} />
             ))}
