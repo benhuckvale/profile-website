@@ -634,6 +634,33 @@
   },
   "projects": [
     {
+      "name": "git-maestro",
+      "url": "https://github.com/benhuckvale/git-maestro",
+      "description": "A convenient TUI to manage and progress git repositories with interactive menus. Also an MCP Server.",
+      "technologies": [
+        "Python",
+        "Shell"
+      ],
+      "tags": [
+        "tui",
+        "ai"
+      ],
+      "github_stars": 0,
+      "license": "MIT License",
+      "_source": "github",
+      "_github_updated_at": "2026-01-29T00:12:59+00:00",
+      "featured": true,
+      "priority": 1,
+      "pypi_package_url": "https://pypi.org/project/git-maestro",
+      "docs_url": "https://benhuckvale.github.io/git-maestro",
+      "custom_description": "It's on pypi so just: pip install git-maestro\n",
+      "highlights": [
+        "Use TUI to setup git projects from scratch faster than an agent could",
+        "Use as MCP server to have your AI agent fetch job traces from github/gitlab/azure"
+      ],
+      "category": "Productivity"
+    },
+    {
       "name": "hf-chatbot-demo",
       "url": "https://github.com/benhuckvale/hf-chatbot-demo",
       "description": "RAG-powered customer support chatbot built with Gradio, designed for deployment on Hugging Face Spaces",
@@ -650,7 +677,7 @@
       "_source": "github",
       "_github_updated_at": "2026-01-08T11:19:46+00:00",
       "featured": true,
-      "priority": 1,
+      "priority": 2,
       "custom_description": "Interactive chatbot demo deployed on Hugging Face Spaces.\n",
       "highlights": [
         "Live interactive demo (may take 30-60s to wake from sleep)",
