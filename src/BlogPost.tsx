@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { FaClock, FaTag, FaArrowLeft, FaUser, FaCube, FaFeatherAlt } from 'react-icons/fa';
 import Giscus from '@giscus/react';
 import demoBlogDataRaw from './blog.json';
+import { convertGitHubBlobToRaw } from './utils/markdownLink';
 
 const DifficultyIcon: React.FC<{ difficulty?: 'hard' | 'soft'; className?: string }> = ({ difficulty, className = '' }) => {
   if (!difficulty) return null;
@@ -61,12 +62,24 @@ const giscusConfig = {
 
 const resolveFeaturedImage = (featuredImage?: FeaturedImage) => {
   if (!featuredImage) return null;
+
+  let path: string;
+  let tint: string | undefined;
+
   if (typeof featuredImage === 'string') {
-    return { path: featuredImage, tint: undefined as string | undefined };
+    path = featuredImage;
+    tint = undefined;
+  } else {
+    path = featuredImage.url || featuredImage.path || '';
+    tint = featuredImage.tint;
   }
+
+  // Convert GitHub blob URLs to raw URLs for images
+  const convertedPath = convertGitHubBlobToRaw(path);
+
   return {
-    path: featuredImage.url || featuredImage.path || '',
-    tint: featuredImage.tint
+    path: convertedPath,
+    tint
   };
 };
 
