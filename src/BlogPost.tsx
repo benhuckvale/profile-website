@@ -259,7 +259,11 @@ const BlogPost: React.FC = () => {
                      prose-pre:bg-light-blue/10 prose-pre:border prose-pre:border-light-blue/30 prose-pre:whitespace-pre-wrap prose-pre:overflow-x-auto
                      prose-ul:text-light-slate prose-ul:my-4 prose-ol:text-light-slate prose-ol:my-4
                      prose-li:text-light-slate
-                     prose-blockquote:border-l-accent prose-blockquote:text-light-slate/80"
+                     prose-blockquote:border-l-accent prose-blockquote:text-light-slate/80
+                     [&_img.drop-cap]:float-left [&_img.drop-cap]:mr-2 [&_img.drop-cap]:mt-0 [&_img.drop-cap]:mb-0 [&_img.drop-cap]:h-[4em] [&_img.drop-cap]:w-auto
+                     [&_img.float-left]:float-left [&_img.float-left]:mr-6 [&_img.float-left]:mb-4 [&_img.float-left]:max-w-[40%]
+                     [&_img.float-right]:float-right [&_img.float-right]:ml-6 [&_img.float-right]:mb-4 [&_img.float-right]:max-w-[40%]
+                     [&_img.inline-img]:inline [&_img.inline-img]:h-[1em] [&_img.inline-img]:align-middle [&_img.inline-img]:mx-1"
           dangerouslySetInnerHTML={{ __html: post.content_html }}
           />
       </article>
