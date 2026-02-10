@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite'
+import type { ViteDevServer } from 'vite'
 import react from '@vitejs/plugin-react'
 import { copyFileSync, mkdirSync, readdirSync, readFileSync, statSync, existsSync } from 'fs'
 import { join } from 'path'
+import type { IncomingMessage, ServerResponse } from 'http'
 
 const rawBasePath = process.env.VITE_BASE_PATH || '/'
 const basePath = rawBasePath.endsWith('/') ? rawBasePath : `${rawBasePath}/`
@@ -11,8 +13,8 @@ function handleExtraPages() {
   return {
     name: 'handle-extra-pages',
     // Serve extra-pages during development
-    configureServer(server) {
-      server.middlewares.use((req, res, next) => {
+    configureServer(server: ViteDevServer) {
+      server.middlewares.use((req: IncomingMessage, res: ServerResponse, next: () => void) => {
         const url = req.url || ''
 
         // Check if this is a request for an extra-page
