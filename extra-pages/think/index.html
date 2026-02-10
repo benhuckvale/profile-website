@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Think for Yourself</title>
+  <style>
+    :root { color-scheme: light; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center;
+      font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #fff; color: #111;
+    }
+    .wrap { width: min(720px, 92vw); text-align: center; }
+    .logo { font-size: 64px; font-weight: 600; letter-spacing: -1px; margin: 0 0 18px; }
+    .logo span { color: #1a73e8; } /* a tiny nod */
+    .search {
+      display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap;
+    }
+    input {
+      width: min(560px, 92vw);
+      padding: 14px 18px;
+      border-radius: 999px;
+      border: 1px solid #dfe1e5;
+      outline: none;
+      box-shadow: 0 1px 6px rgba(32,33,36,.12);
+      font-size: 16px;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    input:focus { border-color: #cfd3d7; box-shadow: 0 2px 10px rgba(32,33,36,.18); }
+    button {
+      padding: 10px 14px;
+      border: 1px solid #dadce0;
+      border-radius: 6px;
+      background: #f8f9fa;
+      cursor: pointer;
+    }
+    button:hover { background: #f1f3f4; }
+    .ui { transition: opacity .6s ease; }
+    .result {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .6s ease, transform .6s ease;
+      margin-top: 26px;
+      color: #444;
+      font-size: 18px;
+    }
+    .result strong { color: #111; }
+    .shown .ui { opacity: 0; pointer-events: none; }
+    .shown .result { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+  <main class="wrap" id="app">
+    <div class="ui">
+      <h1 class="logo"><span>T</span>hink</h1>
+      <form class="search" id="form" autocomplete="off">
+        <input id="q" name="q" placeholder="Search…" autofocus />
+        <button type="submit">Search</button>
+        <button type="button" id="lucky">I'm Feeling Curious</button>
+      </form>
+    </div>
+
+    <div class="result" aria-live="polite">
+      <div><strong>No results.</strong> <span id="message"></span></div>
+    </div>
+  </main>
+
+  <script>
+    const app = document.getElementById("app");
+    const form = document.getElementById("form");
+    const q = document.getElementById("q");
+    const lucky = document.getElementById("lucky");
+    const message = document.getElementById("message");
+
+    const responses = [
+      "Try thinking using your own brain",
+      "Have you tried thinking about this yourself?",
+      "Your brain is still functional, use it",
+      "Perhaps your own mind could figure this out?",
+      "The answer might be in your own head",
+      "Have you considered independent thought?",
+      "Your own neurons are standing by",
+    ];
+
+    const show = () => {
+      if (app.classList.contains("shown")) return;
+
+      // Pick a random response
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      message.textContent = randomResponse;
+
+      app.classList.add("shown");
+      q.blur();
+    };
+
+    form.addEventListener("submit", (e) => { e.preventDefault(); show(); });
+    lucky.addEventListener("click", show);
+
+    // Optional: allow Escape to "reset"
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { app.classList.remove("shown"); q.focus(); q.select(); }
+    });
+  </script>
+</body>
+</html>

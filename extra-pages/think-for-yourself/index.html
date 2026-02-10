@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <meta http-equiv="refresh" content="0; url=/think/">
+  <link rel="canonical" href="/think/">
+  <script>
+    // Immediate redirect with base path support
+    const basePath = window.location.pathname.includes('/profile-website/') ? '/profile-website' : '';
+    window.location.replace(basePath + '/think/');
+  </script>
+</head>
+<body>
+  <p>Redirecting to <a href="/think/">/think/</a>...</p>
+</body>
+</html>
