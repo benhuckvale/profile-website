@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
-import { FaUser, FaFileAlt } from 'react-icons/fa';
+import { FaUser, FaFileAlt, FaRobot } from 'react-icons/fa';
 import Profile from './Profile';
 import Blog from './Blog';
 import BlogPost from './BlogPost';
+import Twin from './Twin';
 import Footer from './components/Footer';
 
 function Navigation() {
@@ -29,6 +30,15 @@ function Navigation() {
             Blog
           </Link>
         </li>
+        <li>
+          <Link
+            to="/twin"
+            className={`nav-link ${location.pathname === '/twin' ? 'nav-link-active' : ''}`}
+          >
+            <FaRobot style={{ display: 'inline', marginRight: '0.5rem' }} />
+            Digital Twin
+          </Link>
+        </li>
       </ul>
     </nav>
   );
@@ -45,6 +55,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/twin" element={<Twin />} />
           </Routes>
         </main>
         <Footer />
