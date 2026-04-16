@@ -88,6 +88,7 @@
       "Life Sciences Sector",
       "Finance Sector"
     ],
+    "about_me_impactful": "PhD physicist turned software engineering leader. 16 years of commercial experience, driven by products that democratise access to powerful technology.\n\nAt Oxford Nanopore Technologies — where portable, affordable DNA sequencing puts genomics in the hands of anyone, anywhere — I spent 13 years growing from individual contributor to Director as the company went from startup to FTSE listing:\n\nDirector, Digital Microfluidics Software — Drove company-wide AI adoption, enabling all developers with AI coding assistants and building internal tools including an automated code reviewer. Transformed a backend team into full-stack capability by directing a React frontend replacement and API redesign.\n\nAssociate Director, VolTRAX Software — Built the software team from scratch and delivered COVID-19 automated sequencing library preparation software during the pandemic. Established end-to-end telemetry from manufacturing through to customer usage. Upskilled C++/Python developers into TypeScript/React, eliminating the split frontend/backend team model. Team recognised as the most agile in the company by an external consultant.\n\nPrincipal Software Engineer — Created the initial VolTRAX software prototype enabling the early commercial product launch, designing the API architecture that cut time-to-market significantly.\n\nSenior / Computational Scientist — Delivered the real-time signal processing system that enabled the MinION product to ship. Drove technology modernisation across the codebase: C++03→C++11, SVN→Git, handwritten builds→CMake.\n\nBefore ONT, I honed my craft in the financial sector at Trafigura and ION Trading, building full-stack trading systems and learning professional development practices from some brilliant engineers.\n\nFoundation: MPhys Physics (Oxford), PhD Experimental Particle Physics (Bristol/CERN), Chartered IT Professional (CITP).\n\nI'm a technical leader who still codes, an architect who ships, and a manager who grows people. Open to what comes next.\n",
     "tech": null
   },
   "work": [
@@ -645,10 +646,10 @@
         "tui",
         "ai"
       ],
-      "github_stars": 0,
+      "github_stars": 1,
       "license": "MIT License",
       "_source": "github",
-      "_github_updated_at": "2026-01-29T00:12:59+00:00",
+      "_github_updated_at": "2026-03-26T17:50:22+00:00",
       "featured": true,
       "priority": 1,
       "pypi_package_url": "https://pypi.org/project/git-maestro",
@@ -657,6 +658,32 @@
       "highlights": [
         "Use TUI to setup git projects from scratch faster than an agent could",
         "Use as MCP server to have your AI agent fetch job traces from github/gitlab/azure"
+      ],
+      "category": "Productivity"
+    },
+    {
+      "name": "agents-md-wizard",
+      "url": "https://github.com/benhuckvale/agents-md-wizard",
+      "description": "A terminal UI for composing AGENTS.md / CLAUDE.md agent instruction files from curated, pre-built guidelines.",
+      "technologies": [
+        "TypeScript"
+      ],
+      "tags": [
+        "tui",
+        "ai"
+      ],
+      "demo_url": "https://benhuckvale.github.io/agents-md-wizard/",
+      "github_stars": 1,
+      "license": "MIT License",
+      "_source": "github",
+      "_github_updated_at": "2026-03-12T13:20:57+00:00",
+      "featured": true,
+      "priority": 2,
+      "npm_package_url": "https://www.npmjs.com/package/agents-md-wizard",
+      "docs_url": "https://benhuckvale.github.io/agents-md-wizard",
+      "custom_description": "npm install agents-md-wizard\n",
+      "highlights": [
+        "Use TUI to make an AGENTS.md from canned guidelines I've used in my projects"
       ],
       "category": "Productivity"
     },
@@ -673,9 +700,9 @@
         "ai"
       ],
       "demo_url": "https://huggingface.co/spaces/benhuckvale/chatbot-demo",
-      "github_stars": 0,
+      "github_stars": 1,
       "_source": "github",
-      "_github_updated_at": "2026-01-08T11:19:46+00:00",
+      "_github_updated_at": "2026-03-26T17:50:36+00:00",
       "featured": true,
       "priority": 2,
       "custom_description": "Interactive chatbot demo deployed on Hugging Face Spaces.\n",
