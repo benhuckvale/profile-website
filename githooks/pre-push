@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Running type check before push..."
+npx tsc -b --noEmit
+
+echo "Type check passed."
