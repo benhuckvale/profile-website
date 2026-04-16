@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, FormEvent } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import type { FormEvent } from 'react';
 import { Turnstile } from '@marsidev/react-turnstile';
 
 const API = import.meta.env.VITE_TWIN_API_URL as string;
