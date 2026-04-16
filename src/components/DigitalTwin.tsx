@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, FormEvent } from 'react';
+import { Turnstile } from '@marsidev/react-turnstile';
 
 const API = import.meta.env.VITE_TWIN_API_URL as string;
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY as string;
 
 interface Message {
   role: 'user' | 'assistant';
@@ -100,6 +102,8 @@ export default function DigitalTwin() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [humanVerified, setHumanVerified] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   // Resolve tier on mount
@@ -143,9 +147,14 @@ export default function DigitalTwin() {
     setLoading(true);
 
     try {
+      // Include Turnstile token on first public message, then mark verified
+      const isFirstPublicMessage = tier === 'public' && !humanVerified;
       const body = tier === 'premium'
         ? JSON.stringify({ message: text })
-        : JSON.stringify({ messages: nextMessages });
+        : JSON.stringify({
+            messages: nextMessages,
+            ...(isFirstPublicMessage && turnstileToken ? { turnstileToken } : {}),
+          });
 
       const res = await fetch(`${API}/chat`, {
         method: 'POST',
@@ -182,6 +191,7 @@ export default function DigitalTwin() {
           }
         }
       }
+      if (isFirstPublicMessage) setHumanVerified(true);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Error';
       setMessages(prev => [...prev, { role: 'assistant', content: `Sorry, something went wrong: ${msg}` }]);
@@ -252,6 +262,17 @@ export default function DigitalTwin() {
         <div ref={bottomRef} />
       </div>
 
+      {/* Turnstile — public tier only, until first message verified */}
+      {tier === 'public' && !humanVerified && (
+        <div className="flex justify-center px-4 py-2 border-t border-gray-700">
+          <Turnstile
+            siteKey={TURNSTILE_SITE_KEY}
+            onSuccess={setTurnstileToken}
+            options={{ theme: 'dark', size: 'normal' }}
+          />
+        </div>
+      )}
+
       {/* Input */}
       <form onSubmit={send} className="flex gap-2 px-4 py-3 border-t border-gray-700">
         <input
@@ -264,7 +285,7 @@ export default function DigitalTwin() {
         />
         <button
           type="submit"
-          disabled={loading || !input.trim()}
+          disabled={loading || !input.trim() || (tier === 'public' && !humanVerified && !turnstileToken)}
           className="px-4 py-2 rounded-xl bg-primary-accent text-white text-sm font-medium hover:opacity-90 disabled:opacity-40 transition-opacity"
         >
           Send
