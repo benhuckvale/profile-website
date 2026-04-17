@@ -51,16 +51,18 @@ function ClaimForm({ token, onClaimed }: { token: string; onClaimed: () => void 
           Your conversation will be saved so you can continue later.
         </p>
       </div>
-      <form onSubmit={submit} className="flex flex-col gap-3 w-full max-w-sm">
+      <form onSubmit={submit} aria-label="Claim premium access" className="flex flex-col gap-3 w-full max-w-sm">
         <input
           type="email"
           required
+          aria-label="Email address"
+          aria-describedby={error ? 'claim-error' : undefined}
           placeholder="your@email.com"
           value={email}
           onChange={e => setEmail(e.target.value)}
           className="px-4 py-2 rounded-lg bg-gray-800 border border-gray-600 text-white placeholder-gray-500 focus:outline-none focus:border-primary-accent"
         />
-        {error && <p className="text-red-400 text-sm">{error}</p>}
+        {error && <p id="claim-error" role="alert" className="text-red-400 text-sm">{error}</p>}
         <button
           type="submit"
           disabled={loading}
@@ -86,6 +88,7 @@ function Bubble({ msg }: { msg: Message }) {
             : 'bg-gray-800 text-gray-100 rounded-bl-sm'
         }`}
       >
+        <span className="sr-only">{isUser ? 'You: ' : 'Ben: '}</span>
         {msg.content}
       </div>
     </div>
@@ -213,8 +216,12 @@ export default function DigitalTwin() {
 
   if (tier === null) {
     return (
-      <div className="h-[600px] bg-gray-900 rounded-2xl border border-gray-700 flex items-center justify-center">
-        <span className="text-gray-500 text-sm">Loading…</span>
+      <div
+        role="status"
+        aria-label="Loading chat"
+        className="h-[600px] bg-gray-900 rounded-2xl border border-gray-700 flex items-center justify-center"
+      >
+        <span className="text-gray-500 text-sm" aria-hidden="true">Loading…</span>
       </div>
     );
   }
@@ -231,23 +238,33 @@ export default function DigitalTwin() {
   };
 
   return (
-    <div className="flex flex-col h-[600px] bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden">
+    <div
+      role="region"
+      aria-label="Chat with Ben's digital twin"
+      className="flex flex-col h-[600px] bg-gray-900 rounded-2xl border border-gray-700 overflow-hidden"
+    >
       {/* Header */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-gray-700">
-        <div className="w-2 h-2 rounded-full bg-green-400" />
+        <div className="w-2 h-2 rounded-full bg-green-400" aria-hidden="true" />
         <span className="text-sm font-medium text-gray-200">Ben Huckvale · Digital Twin</span>
         {tier === 'premium' && (
-          <span className="ml-auto text-xs text-primary-accent">Premium</span>
+          <span className="ml-auto text-xs text-primary-accent" aria-label="Premium access">Premium</span>
         )}
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3">
+      <div
+        role="log"
+        aria-live="polite"
+        aria-label="Conversation"
+        className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3"
+      >
         <Bubble msg={intro} />
         {messages.map((m, i) => <Bubble key={i} msg={m} />)}
         {loading && (
           <div className="flex justify-start">
-            <div className="bg-gray-800 px-4 py-2.5 rounded-2xl rounded-bl-sm">
+            <span className="sr-only">Ben's digital twin is generating a response</span>
+            <div aria-hidden="true" className="bg-gray-800 px-4 py-2.5 rounded-2xl rounded-bl-sm">
               <span className="inline-flex gap-1">
                 {[0, 1, 2].map(i => (
                   <span
@@ -260,7 +277,7 @@ export default function DigitalTwin() {
             </div>
           </div>
         )}
-        <div ref={bottomRef} />
+        <div ref={bottomRef} aria-hidden="true" />
       </div>
 
       {/* Turnstile — public tier only, until first message verified */}
@@ -275,18 +292,25 @@ export default function DigitalTwin() {
       )}
 
       {/* Input */}
-      <form onSubmit={send} className="flex gap-2 px-4 py-3 border-t border-gray-700">
+      <form
+        onSubmit={send}
+        aria-label="Send a message"
+        className="flex gap-2 px-4 py-3 border-t border-gray-700"
+      >
         <input
           type="text"
+          aria-label="Message"
           value={input}
           onChange={e => setInput(e.target.value)}
           placeholder={placeholder}
           disabled={loading}
+          aria-disabled={loading}
           className="flex-1 px-4 py-2 rounded-xl bg-gray-800 border border-gray-600 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-primary-accent disabled:opacity-50"
         />
         <button
           type="submit"
           disabled={loading || !input.trim() || (tier === 'public' && !humanVerified && !turnstileToken)}
+          aria-label="Send message"
           className="px-4 py-2 rounded-xl bg-primary-accent text-white text-sm font-medium hover:opacity-90 disabled:opacity-40 transition-opacity"
         >
           Send
