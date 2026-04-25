@@ -147,6 +147,21 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ job }) => {
                 </div>
               )}
 
+              {position.detail?.product_info && position.detail.product_info.length > 0 && (
+                <div style={{ marginTop: '1rem' }}>
+                  <h5 style={{ color: 'var(--color-secondary-accent)', marginBottom: '0.5rem' }}>
+                    See also:
+                  </h5>
+                  <ul className="cyber-list">
+                    {position.detail.product_info.map((item: { type: string; url: string; description: string }, idx: number) => (
+                      <li key={idx}>
+                        <a href={item.url} target="_blank" rel="noopener noreferrer">{item.description}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               {position.detail?.tech && Object.keys(position.detail.tech).length > 0 && (
                 <div className="tech-tags">
                   {Object.entries(position.detail.tech).map(([_category, techList]: [string, any], idx: number) => (
