@@ -209,7 +209,7 @@ export default function DigitalTwin() {
   if (needsClaim && accessToken) {
     return (
       <div className="h-[600px] bg-gray-900 rounded-2xl border border-gray-700">
-        <ClaimForm token={accessToken} onClaimed={checkMe} />
+        <ClaimForm token={accessToken} onClaimed={() => { setNeedsClaim(false); checkMe(); }} />
       </div>
     );
   }
